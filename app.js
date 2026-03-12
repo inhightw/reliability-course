@@ -1,4 +1,4 @@
-import courseData from './assets.js';
+import courseData from './assets.js?v=4';
 
 document.addEventListener('DOMContentLoaded', () => {
     // === Elements ===
@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextQuestionBtn = document.getElementById('next-question-btn');
     const restartQuizBtn = document.getElementById('restart-quiz-btn');
     const returnHomeBtn = document.getElementById('return-home-btn');
+    const canvasBackToHomeBtn = document.getElementById('canvas-back-to-home-btn');
 
     // Quiz Elements
     const qNumberEl = document.getElementById('q-number');
@@ -275,4 +276,5 @@ document.addEventListener('DOMContentLoaded', () => {
     nextQuestionBtn.addEventListener('click', nextQuestion);
     restartQuizBtn.addEventListener('click', startQuiz);
     returnHomeBtn.addEventListener('click', resetToCanvas);
+    canvasBackToHomeBtn.addEventListener('click', goHome);
 });

@@ -1,0 +1,537 @@
+Copyright © Cheng Julius Wang All Rights Reserved
+199
+• Fundamental Theories
+• Introduction, Statistics, Probability, Reliability Basics
+• Distributions (Binomial, Exponential, Weibull, Normal)
+• Probability Plot: Weibull Plot (median rank)
+• Producer’s Risk (Type I Error)
+• Consumer’s Risk (Type II Error)
+• Testing Hypothesis
+• Reliability Demonstration Tests (RDT) Theory
+• Sample Size Determination Approaches
+• Estimation Approach
+• Method E1: Normal Approximation with Bound Width
+• Method E2: ML Approximate Variance with Bound Ratio
+• Method E3: ML Approximate Variance with Bound Width
+• Risk Control Approach
+• Method R1: Non-Parametric Binomial
+• Method R2: Parametric Binomial
+• Method R3: Exponential Chi-Square
+• Method R4: Weibull Chi-Square
+• Method R5: Repairable System Poisson
+Table of Contents
+• Bayesian Inference
+• Classical vs. Bayesian Statistics
+• Teaser Examples
+• Thomas Bayes
+• Conditional Probability and Bayes Theorem
+• Odds, Bayesian Confidence, and Logit
+• Some Core Principles
+• Prior Information Sources and Quantification
+• Design Change Condition (DCC) Factor
+• Reliability Activities Maturity (RAM) Factor
+• Conjugate Pairs
+• Beta Distribution
+• Method B1: Bayesian Prior Confidence
+• Beta Prior Distribution 
+• Method B2: Bayesian Beta Prior 3-Point
+• Method B3: Bayesian Beta Prior Sub-Systems
+• Gamma Prior Distribution
+• Method B4: Bayesian Gamma Prior 50/95
+• Method B5: Bayesian Gamma Prior BAZE
+Copyright © Cheng Julius Wang All Rights Reserved
+200
+• In probability theory, Odds is a measure of the likelihood of a particular outcome. When specific events 
+are equally likely, odds are calculated as the ratio of the number of events producing that outcome to the 
+number of events that do not.
+• Odds has a simple relationship with probability (P) of that specific event of that outcome. Hence, we 
+have 𝑶 =
+𝑷𝒓𝒐𝒃𝒂𝒃𝒊𝒍𝒊𝒕𝒚
+𝟏−𝒑𝒓𝒐𝒃𝒂𝒃𝒊𝒍𝒊𝒕𝒚 =
+𝒑
+𝟏−𝒑 . Also, 𝒑 =
+𝑶
+𝟏+𝑶.
+• For example, we obtain a “3” by throwing a fair dice with a probability of 1/6. Odds = 𝑂 =
+1/6
+1−1/6 =
+1 𝑡𝑜 5. We say the odds in favor of an event is the ratio of the probability the event will happen to that 
+the event will not happen.
+Odds and Probability
+Copyright © Cheng Julius Wang All Rights Reserved
+201
+Odds and Bayesian Confidence
+• In Bayesian statistics, following the spirit of Sir Harold Jeffreys (1939), a subjective belief of some 
+events or a state of knowledge could be reasonably quantified as a probability statement between 0 
+and 1. 
+• When the probability is high, we could say the “confidence” of the event happening is high. For 
+example, we are 90% confident that it’s going to rain this afternoon.  Hence, the odds in favor of 
+raining this afternoon is 
+0.9
+1−0.9 = 9 𝑡𝑜 1.
+• When the probability is low, we could say the “confidence” of the event happening is low. For 
+example, we are only about 20% confident that we could pass the reliability test due to many 
+prototype issues. Hence, the odds in favor of passing the reliability test is 
+0.2
+1−0.2 = 1 𝑡𝑜 4.
+𝑶 = 𝑪
+𝟏 − 𝑪
+𝑪 = 𝑶
+𝟏 + 𝑶
+Copyright © Cheng Julius Wang All Rights Reserved
+202
+• We define logit as follows:
+Logit = ln(𝑶𝒅𝒅𝒔)
+• When we let 𝑙𝑜𝑔𝑖𝑡 =  𝑥, then x follows a standard logistic distribution with 
+• 𝑝𝑑𝑓 =
+𝑒−𝑥
+1+𝑒−𝑥 2  , 𝐶𝐷𝐹 =
+1
+1+𝑒−𝑥 = 𝑝,  𝑥 is the 𝑝𝑡ℎ 𝑝𝑒𝑟𝑐𝑒𝑛𝑡𝑖𝑙𝑒.
+• 𝑝 =
+𝑒𝑥
+1+𝑒𝑥 =
+exp(𝑙𝑜𝑔𝑖𝑡)
+1+exp(𝑙𝑜𝑔𝑖𝑡)
+• We can see that 𝑙𝑜𝑔𝑖𝑡 = 𝑥 belongs to (−∞, +∞), and 𝑝 belongs to to 0, 1 . This indicates that logit has a wider 
+range in mathematical operation.
+• We will use this concept later in estimating the impact of design change.
+𝑙𝑜𝑔𝑖𝑡= ln 𝑜𝑑𝑑𝑠 = ln 𝑂 = 𝑙𝑛 𝑝
+1 − 𝑝
+Copyright © Cheng Julius Wang All Rights Reserved
+• In general, our objective of applying the Bayesian inference is to develop sample size and/or test length 
+for reliability testing with a process of using past data/experience of the subject at hand. Another 
+objective is to obtain tighter interval estimates of population parameters.
+• In order to do that, we need historical data, information, and/or expert judgement of how likely we are 
+meeting the reliability goal/target before the testing.
+• Where can we obtain these type of information? 
+• How do we convert these “prior information” (some are quantitative and others, qualitative) into “prior 
+distribution” for Bayesian inference?
+203
+What is our objective of applying Bayesian Inference?
+Copyright © Cheng Julius Wang All Rights Reserved
+• In general, six broad sources of data/information to help construct reasonable prior distributions:
+1) Physical/chemical theories
+2) Industry-wide generic quality/reliability data (e.g., failure rate of capacitor, resistor, IC, etc.)
+3) Previous (historical) data/evidence of the current version of the product design and/or process
+• Design/Development Phase: modeling, simulation, design guidelines, DFMEA, FTA, reliability prediction 
+(PCBA and device failure rate), test profiling, experimenting and/or testing, HALT
+• Manufacturing/Assembly Phase: On-line production data, HASS, Burn-In, ESS
+• Field Deployment Phase: data from real world customer use, annual qualification testing
+4) Supplier data
+• Look for surrogate data with correlation to the interested characteristics; sub-system test data
+5) Competitive analysis
+• Component level analysis with industry-wide available data and/or supplier data
+• System and/or product level testing (e.g., competitive vehicle testing to 100K miles)
+6) Expert judgements (subjective in nature; through survey and analysis)
+204
+Prior Information Sources to Construct Prior Distribution
+Copyright © Cheng Julius Wang All Rights Reserved
+205
+• To align with the business direction/objective,
+• A “design improvement” is to enhance/increase the design performance.
+• A “design compromise” is to reduce/decrease the design performance.
+• We define two factors below (Note the different roles and responsibilities):
+• Design Change Condition (DCC) Factor
+• This is the assessment by Engineering of the “impact of design change to reliability”
+• We use this to assess the “consequence” of DESIGN impact to RELIABILITY!
+• Reliability Activities Maturity (RAM) Factor
+• This is the assessment by Quality/Reliability of the “maturity of the executed reliability activities” for those 
+“design changes” (improvement or compromise)
+• We use this to assess the “consequence” of  RELIABILITY ACTIVITIES impact to RELIABILITY!
+• In general, the MTBF, reliability, or confidence after the “Design Change” will be updated from the current metrics 
+by multiplying these two factors. For example, 
+   𝑀𝑇𝑇𝐹𝑢𝑝𝑑𝑎𝑡𝑒𝑑= 𝑀𝑇𝑇𝐹𝑐𝑢𝑟𝑟𝑒𝑛𝑡× 𝐷𝐶𝐶 × (𝑅𝐴𝑀)
+How to Quantify Impact to Reliability/Confidence from 
+a “Design Improvement” or a “Design Compromise?
+Copyright © Cheng Julius Wang All Rights Reserved
+206
+• This is the Engineering assessment of the improvement (or compromise, for example, cost cutting) of the “design 
+change” to the product in terms of failure rate, MTBF, reliability, etc.
+• We define Seven Categories:
+• Major Improvement
+• Medium Improvement
+• Minor Improvement
+• Carry-Over
+• Minor Compromise
+• Medium Compromise
+• Major Compromise
+• Each category is given a DCC Factor that represents the best estimate of the multiplier to the current product 
+reliability level. 
+Design Change Condition (DCC) Factor
+Copyright © Cheng Julius Wang All Rights Reserved
+207
+Design Change Condition (DCC) Factor Table
+• The concept of DCC is taken and modified from the paper:  Grohowski, G., Hausman, W. C., and Lamberson, L. R. (1976), “A Bayesian Statistical Inference Approach to 
+Automotive Reliability Estimation,” Journal of Quality Technology, V ol. 8, No. 4, October, pp. 197-208.
+The 3 columns represent 
+several different methods to 
+be discussed
+Copyright © Cheng Julius Wang All Rights Reserved
+208
+• This is the Quality/Reliability assessment of the maturity of five quality/reliability activities acted on 
+those specific “design changes”. In general,
+1. Mission Profile is developed/updated with appropriate environmental conditions (include effect 
+from market change), customer usage, and magnitude and frequency of loading.
+2. Reliability/Life Tests are developed/updated considering the appropriate Mission Profile for the 
+Design Life and 95th percentile (could be lower or higher; business decision) customer usage and/or 
+loading.
+3. DFMEA is developed/updated with similar historical problems including root causes, fixes, design 
+guideline update, material selection, simulation, tests, process control plans, etc.
+4. DFMEA is developed/updated with potential failure modes from the “design change”, root 
+causes, preventive actions (including material selection, simulation, tests, process control plans, etc.).
+5. Engineering development tests (at supplier and/or OEM) are completed to study design limits, 
+failure modes and mechanisms, and corrective actions are implemented for the design change.
+Reliability Activities Maturity (RAM) Factor
+Copyright © Cheng Julius Wang All Rights Reserved
+209
+Reliability Activities Maturity (RAM) Factor: Example
+Table: Odds vs. Subjective Confidence
+• Evaluate each item with a value of “Odds” in favor. See example in next pages.
+𝑶 = 𝑪
+𝟏 − 𝑪 𝑪 = 𝑶
+𝟏 + 𝑶
+Copyright © Cheng Julius Wang All Rights Reserved
+210
+Reliability Activities Maturity (RAM) Factor: Steps 1, 2
+Step 1: Specify Odds of each of the 5 items 
+using “Table: Odds vs. Confidence”
+Step 2: Calculate 𝐿𝑜𝑔𝑖𝑡 =  ln(𝑂𝑑𝑑𝑠); 
+e.g., ln(10) = 2.30.
+Table: Odds vs. Subjective Confidence
+Copyright © Cheng Julius Wang All Rights Reserved
+211
+Reliability Activities Maturity (RAM) Factor: Steps 3, 4, 5, 6
+Step 3: Determine the Weighting based 
+on your business practices
+Step 4: Logit×Weighting = Weighted Logits; e.g., 2.30*0.15=0.345
+Step  6: RAM Factor = 
+exp(𝑇𝑊𝐿)
+1+exp(𝑇𝑊𝐿)
+Step 5: Total Weighted Logit = TWL 
+= sum(5 Weighted Logits)
+Table: Odds vs. Subjective Confidence
+Copyright © Cheng Julius Wang All Rights Reserved
+212
+• Fundamental Theories
+• Introduction, Statistics, Probability, Reliability Basics
+• Distributions (Binomial, Exponential, Weibull, Normal)
+• Probability Plot: Weibull Plot (median rank)
+• Producer’s Risk (Type I Error)
+• Consumer’s Risk (Type II Error)
+• Testing Hypothesis
+• Reliability Demonstration Tests (RDT) Theory
+• Sample Size Determination Approaches
+• Estimation Approach
+• Method E1: Normal Approximation with Bound Width
+• Method E2: ML Approximate Variance with Bound Ratio
+• Method E3: ML Approximate Variance with Bound Width
+• Risk Control Approach
+• Method R1: Non-Parametric Binomial
+• Method R2: Parametric Binomial
+• Method R3: Exponential Chi-Square
+• Method R4: Weibull Chi-Square
+• Method R5: Repairable System Poisson
+Table of Contents
+• Bayesian Inference
+• Classical vs. Bayesian Statistics
+• Teaser Examples
+• Thomas Bayes
+• Conditional Probability and Bayes Theorem
+• Odds, Bayesian Confidence, and Logit
+• Some Core Principles
+• Prior Information Sources and Quantification
+• Design Change Condition (DCC) Factor
+• Reliability Activities Maturity (RAM) Factor
+• Conjugate Pairs
+• Beta Distribution
+• Method B1: Bayesian Prior Confidence
+• Beta Prior Distribution 
+• Method B2: Bayesian Beta Prior 3-Point
+• Method B3: Bayesian Beta Prior Sub-Systems
+• Gamma Prior Distribution
+• Method B4: Bayesian Gamma Prior 50/95
+• Method B5: Bayesian Gamma Prior BAZE
+Copyright © Cheng Julius Wang All Rights Reserved
+• Intuitively, a prior distribution and the posterior distribution are of the same parametric form is called 
+“conjugacy”. We say they form a “conjugate pair”. For example, 
+• 𝑥 𝑝  ~ 𝐵𝑖𝑛𝑜𝑚𝑖𝑎𝑙𝑛, 𝑝 ; likelihood pdf
+• 𝑝~ 𝐵𝑒𝑡𝑎(𝑎, 𝑏); prior
+• 𝑝 𝑥  ~ 𝐵𝑒𝑡𝑎(𝑎 + 𝑟, 𝑏 + 𝑛− 𝑟); posterior
+• 𝑟 =  𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑓𝑎𝑖𝑙𝑢𝑟𝑒𝑠
+• 𝑛 =  𝑠𝑎𝑚𝑝𝑙𝑒 𝑠𝑖𝑧𝑒s
+213
+Conjugacy and Conjugate Pair
+• When we deal with binomial testing (certain RDTs we have discussed), we could use Beta Distribution as 
+the prior distribution of the 𝑝𝑒𝑟𝑐𝑒𝑛𝑡 𝑓𝑎𝑖𝑙𝑢𝑟𝑒 𝑝 (1 − 𝑝 = 𝑟𝑒𝑙𝑖𝑎𝑏𝑖𝑙𝑖𝑡𝑦) . The posterior distribution of 𝑝 will 
+also be a Beta Distribution. 
+• We choose conjugate pairs simply because the conjugate pair is mathematically convenient to handle. 
+
+Copyright © Cheng Julius Wang All Rights Reserved
+214
+𝑓(𝑝; 𝑎, 𝑏) = 𝑝𝑎−1 1 − 𝑝 𝑏−1
+𝐵 𝑎, 𝑏 = Γ 𝑎 + 𝑏
+Γ 𝑎 Γ 𝑏 𝑝𝑎−1 1 − 𝑝 𝑏−1
+• 𝐵(𝑎, 𝑏), called the complete beta function:
+𝐵 𝑎, 𝑏 = Γ 𝑎 Γ 𝑏
+Γ 𝑎 + 𝑏 = (𝑎 − 1)! (𝑏 − 1)!
+(𝑎 + 𝑏 − 1)!
+Beta Distribution (1/3)
+• For 𝑎 𝑎𝑛𝑑 𝑏 are integers, 𝐵(𝑎, 𝑏) is related to Gamma function:
+• 𝐵(𝑎, 𝑏)  =  𝐵(𝑏, 𝑎) , they are symmetrical.
+• Note that Γ 𝑛 = 𝑛 − 1 ! when n is integer.  Also,  Γ
+1
+2 = 𝜋.  In general,  Γ 𝑧 =׬0
+∞
+𝑡𝑧−1𝑒−𝑡𝑑𝑡
+𝐵 𝑎, 𝑏 = න
+0
+1
+𝑥𝑎−1(1 − 𝑥)𝑏−1𝑑𝑥
+𝑝𝑑𝑓⇒
+Copyright © Cheng Julius Wang All Rights Reserved
+215
+• The CDF (cumulative distribution function) of 𝑓(𝑝; 𝑎, 𝑏) is 𝐹(𝑝; 𝑎, 𝑏) :
+Beta Distribution (2/3)
+• 𝐵(𝑝, 𝑎, 𝑏) is called Incomplete Beta Function.
+• 𝐼𝑝(𝑎, 𝑏) is called “Regularized Incomplete Beta Function”.
+• When 𝒂 = 𝒓 + 𝟏, 𝒃 = 𝒏 − 𝒓, (𝑟 is the number of failures and 𝑛 is the sample size), we have
+𝐹 𝑝; 𝑎, 𝑏 = න
+0
+𝑝
+𝑓 𝑥; 𝑎, 𝑏 𝑑𝑥= 1
+𝐵(𝑎, 𝑏) න
+0
+𝑝
+𝑥𝑎−1 1 − 𝑥 𝑏−1𝑑𝑥= 𝐵 𝑝, 𝑎, 𝑏
+𝐵 𝑎, 𝑏 = 𝐼𝑝(𝑎, 𝑏)
+𝐼𝑝 𝑟 + 1, 𝑛− 𝑟 = 1 − ෍
+𝑖=0
+𝑟
+𝑛
+𝑖 𝑝𝑖 1 − 𝑝 𝑛−𝑖 = 𝐶
+• We have discussed this in Method R2. 𝐶 =  𝑐𝑜𝑛𝑓𝑖𝑑𝑒𝑛𝑐𝑒,  𝑟 = 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑓𝑎𝑖𝑙𝑢𝑟𝑒, 𝑛 = 𝑠𝑎𝑚𝑝𝑙𝑒 𝑠𝑖𝑧𝑒,  𝑝 = 1 −
+𝑅 = 𝑝𝑒𝑟𝑐𝑒𝑛𝑡 𝑓𝑎𝑖𝑙𝑢𝑟𝑒. 
+Copyright © Cheng Julius Wang All Rights Reserved
+216
+Beta Distribution (3/3)
+• Note that 𝐼𝑝 𝑎, 𝑏 = 1 − 𝐼1−𝑝 𝑏, 𝑎
+• Excel functions to find the above  𝐶 = 𝐶𝑜𝑛𝑓𝑖𝑑𝑒𝑛𝑐𝑒: (you can use any of the following three) 
+• 𝑪 = 𝑩𝒆𝒕𝒂. 𝑫𝑰𝑺𝑻 𝒑, 𝒓 + 𝟏, 𝒏 − 𝒓, 𝑻𝑹𝑼𝑬 = 𝑩𝒆𝒕𝒂. 𝑫𝑰𝑺𝑻 𝟏 − 𝑹, 𝒓 + 𝟏, 𝒏 − 𝒓, 𝑻𝑹𝑼𝑬 , or
+• 𝐶 = 1 − 𝐵𝑒𝑡𝑎. 𝐷𝐼𝑆𝑇 𝟏 − 𝒑, 𝑛− 𝑟, 𝑟 + 1, 𝑇𝑅𝑈𝐸
+• 𝐶 = 1 − 𝐵𝑒𝑡𝑎. 𝐷𝐼𝑆𝑇(𝑹, 𝑛− 𝑟, 𝑟 + 1, 𝑇𝑅𝑈𝐸)
+• Also, if we fix C, then the upper C% confidence limit of p (or lower C% confidence limit of R) can be 
+obtained as follows in Excel:
+• 𝒑 = 𝑩𝒆𝒕𝒂. 𝑰𝑵𝑽 𝑪, 𝒓 + 𝟏, 𝒏 − 𝒓
+• 𝑹 = 𝟏 − 𝒑 = 𝟏 − 𝑩𝒆𝒕𝒂. 𝑰𝑵𝑽 𝑪, 𝒓 + 𝟏, 𝒏 − 𝒓
+𝐼𝑝 𝑟 + 1, 𝑛− 𝑟 = 1 − ෍
+𝑖=0
+𝑟
+𝑛
+𝑖 𝑝𝑖 1 − 𝑝 𝑛−𝑖 = 𝐶
+Copyright © Cheng Julius Wang All Rights Reserved
+217
+Method B1: Bayesian Prior Confidence
+- Example
+• Example B1.1: 
+• We have historical testing results of an ECU from a reliability test. 𝑟 = 0, 𝑛 = 11.
+• We have made some changes of certain devices with smaller failure rates for a different customer. This 
+has been assessed as minor improvement.
+• We have done very limited reliability activities:
+• The different customer is in the same market we have products deployed.
+• DFMEA was reviewed with very little changes.
+• Very little engineering development test has been done since the original ECU has gone through a 
+very good HALT before.
+• Now we want to design a reliability test. What is the sample size to verify R90/C90?
+• We want to apply Bayesian method.
+Copyright © Cheng Julius Wang All Rights Reserved
+218
+• Example B1.1 (cont’d): 
+• We need to evaluate the DCC Factor and RAM Factor first.
+• DCC Factor: based on the devices we have modified with failure rate improvement as a “Minor 
+Improvement”, so DCC = 1.05
+Example B1.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+219
+• Example B1.1 (cont’d): 
+• We need to evaluate the DCC Factor and RAM Factor first.
+• DCC Factor: we believe this is a “Minor Improvement”. DCC = 1.05
+• RAM Factor: we have assessed 5 items below. RAM = 0.943. 
+Example B1.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+220
+• Example B1.1 (cont’d): 
+• With the historical data of  𝑟 = 0, 𝑛 = 11, the current confidence (𝑪𝒄𝒖𝒓𝒓𝒆𝒏𝒕) of meeting reliability target of 
+R = 0.9 can be estimated as 𝑩𝒆𝒕𝒂. 𝑫𝑰𝑺𝑻 𝒑, 𝒓 + 𝟏, 𝒏 − 𝒓, 𝑻𝑹𝑼𝑬 = 𝐵𝑒𝑡𝑎. 𝐷𝐼𝑆𝑇(
+)
+1 − 0.9, 0 + 1, 11 −
+0, 𝑇𝑅𝑈𝐸 = 𝐵𝑒𝑡𝑎. 𝐷𝐼𝑆𝑇 0.1, 1, 11, 𝑇𝑅𝑈𝐸 = 0.686.
+• We will multiply this confidence by the DCC and RAM to develop a Bayesian prior confidence.
+• 𝑪𝒑𝒓𝒊𝒐𝒓 = 𝑪𝒄𝒖𝒓𝒓𝒆𝒏𝒕 × 𝑫𝑪𝑪 × 𝑹𝑨𝑴 = 0.686 × 1.05 × 0.943 = 0.679. 
+• With 𝐶𝑝𝑟𝑖𝑜𝑟 = 0.679 and applying Method R1, we can say it is “equivalent” that we have had a test with 𝒏𝒑𝒓𝒊𝒐𝒓 
+number of sample size to meet reliability target 𝑅 = 0.9 where 𝑛𝑝𝑟𝑖𝑜𝑟 =
+ln(1−𝐶𝑝𝑟𝑖𝑜𝑟)
+ln(𝑅) =
+ln(1−0.679)
+ln(0.9) = 10.8~11.
+• In order to demonstrate R90/C90, Method R1 develops the classical solution of 𝑛 =
+ln(1−0.9)
+ln(0.9) = 22.
+• Therefore, we would need "𝑛− 𝑛𝑝𝑟𝑖𝑜𝑟" = 22 − 11 = 11 samples for the reliability test.
+Example B1.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+221
+• Exercise B1.1: 
+• Following Example B1.1, we have 1 failure out of 11 samples from a reliability test (𝑟 = 1, 𝑛 = 11).
+• All others follow Example B1.1.
+• Now we want to design a reliability test. What is the sample size to verify R90/C90?
+• We want to apply Bayesian method.
+Method B1: Bayesian Prior Confidence
+- Exercise
+Copyright © Cheng Julius Wang All Rights Reserved
+222
+• Solution to Exercise B1.1: 
+• Same as Example B1.1, DCC=1.05 and RAM = 0.943.
+• With the historical data of  𝑟 = 1, 𝑛 = 11, the current confidence (𝑪𝒄𝒖𝒓𝒓𝒆𝒏𝒕) of meeting reliability target 
+of 0.9 can be estimated as 𝑩𝒆𝒕𝒂. 𝑫𝑰𝑺𝑻 𝒑, 𝒓 + 𝟏, 𝒏 − 𝒓, 𝑻𝑹𝑼𝑬 = 𝐵𝑒𝑡𝑎. 𝐷𝐼𝑆𝑇 0.1, 2, 10, 𝑇𝑅𝑈𝐸 = 0.303.
+• We will multiply this confidence by the DCC and RAM to develop a Bayesian prior confidence.
+• 𝐶𝑝𝑟𝑖𝑜𝑟= 𝑪𝒄𝒖𝒓𝒓𝒆𝒏𝒕 × 𝐷𝐶𝐶 × 𝑅𝐴𝑀 = 0.303 × 1.05 × 0.943 = 0.300. 
+• With 𝐶𝑝𝑟𝑖𝑜𝑟 = 0.300 and applying Method R1, we can say it is equivalent that we have had a test with 𝑛𝑝𝑟𝑖𝑜𝑟 
+number of sample size to meet reliability target 𝑅 = 0.9 where 𝑛𝑝𝑟𝑖𝑜𝑟 =
+ln(1−𝐶𝑝𝑟𝑖𝑜𝑟)
+ln(𝑅) = ln(1−0.300)
+ln(0.9) = 3.39~4.
+• In order to demonstrate R90/C90, Method R1 develops classical solution of 𝑛 =
+ln(1−0.9)
+ln(0.9) = 22.
+• Therefore, we would need "𝑛− 𝑛𝑝𝑟𝑖𝑜𝑟" = 22 − 4 = 18 samples for the reliability test.
+Exercise B1.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+223
+• Exercise B1.2: 
+• Following Example B1.1, we have 1 failure out of 11 samples from a reliability test (𝑟 = 1, 𝑛 = 11) of a 
+current product.
+• Engineering R&D believes we have made a “major improvement” by changing and upgrading certain 
+circuits and devices for a different customer in a very different market and environment.
+• Due to timing constraints, we can only do limited reliability activities to truly understand and quantify the 
+environment, assess our reliability tests for stressors and limits, and limited DFMEA. But we did certain 
+development testing (like HALT), identified few weak spots, and corrected them in the design.
+• We want to design a reliability test. What is the sample size to verify R90/C90?
+• We want to apply Bayesian method.
+Method B1: Bayesian Prior Confidence
+- Exercise
+Copyright © Cheng Julius Wang All Rights Reserved
+224
+• Solution to Exercise B1.2: 
+• With assessment of “Major Improvement”, DCC = 1.5
+Exercise B1.2 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+225
+• Solution to Exercise B1.2: 
+• With assessment of “major improvement”, DCC = 1.5
+• With limited reliability activities, RAM = 0.826.
+Exercise B1.2 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+226
+• Solution to Exercise B1.2: 
+• DCC=1.5 and RAM = 0.826.
+• With the historical data of  𝑟 = 1, 𝑛 = 11, the current confidence (𝑪𝒄𝒖𝒓𝒓𝒆𝒏𝒕) of meeting reliability target 
+of 0.9 can be estimated as 𝑩𝒆𝒕𝒂. 𝑫𝑰𝑺𝑻 𝒑, 𝒓 + 𝟏, 𝒏 − 𝒓, 𝑻𝑹𝑼𝑬 = 𝐵𝑒𝑡𝑎. 𝐷𝐼𝑆𝑇 0.1, 2, 10, 𝑇𝑅𝑈𝐸 = 0.303.
+• We will multiply this confidence by the DCC and RAM to develop a Bayesian prior confidence.
+• 𝐶𝑝𝑟𝑖𝑜𝑟= 𝑪𝒄𝒖𝒓𝒓𝒆𝒏𝒕 × 𝐷𝐶𝐶 × 𝑅𝐴𝑀 = 0.303 × 1.5 × 0.826 = 0.375. 
+• With 𝐶𝑝𝑟𝑖𝑜𝑟 = 0.375 and applying Method R1, we can say it is equivalent that we have had a test with 𝑛𝑝𝑟𝑖𝑜𝑟 
+number of sample size to meet reliability target 𝑅 = 0.9 where 𝑛𝑝𝑟𝑖𝑜𝑟 =
+ln(1−𝐶𝑝𝑟𝑖𝑜𝑟)
+ln(𝑅) = ln(1−0.375)
+ln(0.9) = 4.47~5.
+• In order to demonstrate R90/C90, Method R1 develops classical solution of 𝑛 =
+ln(1−0.9)
+ln(0.9) = 22.
+• Therefore, we would need "𝑛− 𝑛𝑝𝑟𝑖𝑜𝑟" = 22 − 5 = 17 samples for the reliability test.
+Exercise B1.2 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+227
+• Fundamental Theories
+• Introduction, Statistics, Probability, Reliability Basics
+• Distributions (Binomial, Exponential, Weibull, Normal)
+• Probability Plot: Weibull Plot (median rank)
+• Producer’s Risk (Type I Error)
+• Consumer’s Risk (Type II Error)
+• Testing Hypothesis
+• Reliability Demonstration Tests (RDT) Theory
+• Sample Size Determination Approaches
+• Estimation Approach
+• Method E1: Normal Approximation with Bound Width
+• Method E2: ML Approximate Variance with Bound Ratio
+• Method E3: ML Approximate Variance with Bound Width
+• Risk Control Approach
+• Method R1: Non-Parametric Binomial
+• Method R2: Parametric Binomial
+• Method R3: Exponential Chi-Square
+• Method R4: Weibull Chi-Square
+• Method R5: Repairable System Poisson
+Table of Contents
+• Bayesian Inference
+• Classical vs. Bayesian Statistics
+• Teaser Examples
+• Thomas Bayes
+• Conditional Probability and Bayes Theorem
+• Odds, Bayesian Confidence, and Logit
+• Some Core Principles
+• Prior Information Sources and Quantification
+• Design Change Condition (DCC) Factor
+• Reliability Activities Maturity (RAM) Factor
+• Conjugate Pairs
+• Beta Distribution
+• Method B1: Bayesian Prior Confidence
+• Beta Prior Distribution 
+• Method B2: Bayesian Beta Prior 3-Point
+• Method B3: Bayesian Beta Prior Sub-Systems
+• Gamma Prior Distribution
+• Method B4: Bayesian Gamma Prior 50/95
+• Method B5: Bayesian Gamma Prior BAZE
+Copyright © Cheng Julius Wang All Rights Reserved
+228
+Beta Prior Distribution
+𝑓 𝑝; 𝑎, 𝑏 = 𝑝𝑎−1 1 − 𝑝 𝑏−1
+𝐵 𝑎, 𝑏 = Γ 𝑎 + 𝑏
+Γ 𝑎 Γ 𝑏 𝑝𝑎−1 1 − 𝑝 𝑏−1
+𝑚𝑒𝑎𝑛= a
+𝑎 + 𝑏 , 
+𝑣𝑎𝑟𝑖𝑎𝑛𝑐𝑒= 𝑎𝑏
+𝑎 + 𝑏 2(𝑎 + 𝑏 + 1)
+• 𝒇(𝒑; 𝒂, 𝒃) is the Beta distribution and we use it as the 
+prior distribution for percent failure 𝒑 =  (𝟏 − 𝑹).
+• “𝑎” represents the pseudo number of failures
+• “𝑏” represents the pseudo number of survivors
+• “𝑎 + 𝑏” represents the pseudo number of sample size 
+for the testing
+
+Copyright © Cheng Julius Wang All Rights Reserved
+229
+𝑓 𝑝 𝑥 =
+𝑛
+𝑥 𝑝𝑥 1 − 𝑝 𝑛−𝑥 𝑝𝑎−1(1 − 𝑝)𝑏−1
+𝐵(𝑎, 𝑏)
+׬0
+1 𝑛
+𝑥 𝑝𝑥 1 − 𝑝 𝑛−𝑥 𝑝𝑎−1(1 − 𝑝)𝑏−1
+𝐵(𝑎, 𝑏) 𝑑𝑝
+= 𝑝𝑎+𝑥−1(1 − 𝑝)𝑏+𝑛−𝑥−1
+𝐵(𝑎 + 𝑥, 𝑏 + 𝑛 − 𝑥)
+• The posterior distribution 𝑓(𝑝|𝑥), after observing 𝒙 failures out of 𝒏 tests, is given by
+• As can be seen from the last part, it is still a Beta distribution with parameters 𝑎’ and 𝑏’: 
+• 𝒂’ =  𝒂 + 𝒙 = 𝑝𝑠𝑒𝑢𝑑𝑜 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑓𝑎𝑖𝑙𝑢𝑟𝑒𝑠 + (𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑓𝑎𝑖𝑙𝑢𝑟𝑒𝑠 𝑓𝑟𝑜𝑚 𝑡𝑒𝑠𝑡)
+• 𝒃’ =  𝒃 + (𝒏 − 𝒙) = 𝑝𝑠𝑒𝑢𝑑𝑜 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑠𝑢𝑟𝑣𝑖𝑣𝑜𝑟𝑠 + (𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑠𝑢𝑟𝑣𝑖𝑣𝑜𝑟𝑠 𝑓𝑟𝑜𝑚 𝑡𝑒𝑠𝑡)
+Posterior Distribution is also a Beta Distribution
+Copyright © Cheng Julius Wang All Rights Reserved
+230
+• The mean and variance of the beta prior are
+𝑚𝑒𝑎𝑛= a
+𝑎 + 𝑏 , 𝑣𝑎𝑟𝑖𝑎𝑛𝑐𝑒= 𝑎𝑏
+𝑎 + 𝑏 2(𝑎 + 𝑏 + 1)
+• The mean and variance of the posterior beta are
+𝑚𝑒𝑎𝑛= a + x
+𝑎 + 𝑏 + 𝑛 , 𝑣𝑎𝑟𝑖𝑎𝑛𝑐𝑒= (𝑎 + 𝑥)(𝑏 + 𝑛− 𝑥)
+𝑎 + 𝑏 + 𝑛 2(𝑎 + 𝑏 + 𝑛+ 1)
+Beta Prior and Posterior: Means and Variances

@@ -82,7 +82,16 @@
         <!-- VIEW 1: Summary Canvas -->
         <div id="view-canvas" class="view inactive-view">
 
-            <header class="hero">
+            <header class="hero" style="position: relative;">
+                <button id="canvas-back-to-home-btn" class="btn-icon-only" aria-label="返回首頁"
+                    style="position: absolute; top: 0; left: 0;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    <span>返回首頁</span>
+                </button>
                 <div class="badge" id="canvas-lesson-badge">Lecture Analysis Complete</div>
                 <h1 class="hero-title" id="canvas-lesson-title">課程精華摘要<br /><span class="gradient-text">貝氏統計與推論</span>
                 </h1>
@@ -206,7 +215,7 @@
     </main>
 
     <!-- App Logic -->
-    <script type="module" src="app.js"></script>
+    <script type="module" src="app.js?v=4"></script>
 </body>
 
 </html>

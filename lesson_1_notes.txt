@@ -1,0 +1,1332 @@
+Sample Size Determination of
+Reliability Tests
+Cheng Julius Wang
+cjuliuswang@hotmail.com
+10-29-2025 (v01)
+1
+
+Copyright © Cheng Julius Wang All Rights Reserved
+2
+• Overview
+• This course covers 13 practical statistical methods for the determination of sample size 
+of reliability tests.
+• These methods apply to mechanical and electrical/electronic components and systems.
+• We apply the methods of the classical (frequentist) statistics and the Bayesian statistics.
+• This course aims at problem-solving than theoretical development. 
+• Upon completion of this course,
+• You will be able to solve your sample size problems for reliability test in your work!
+• You will learn these 13 methods by following three approaches:
+• Estimation Approach
+• Risk-Control Approach
+• Bayesian Approach
+Learning Objectives
+
+Copyright © Cheng Julius Wang All Rights Reserved
+3
+• Exposure to basic probability and statistics
+• Population vs. Sample
+• Histogram and Frequency Functions
+• Cumulative Distribution Function (CDF) and Probability Density Function (pdf)
+• Mean, Standard Deviation, Confidence level
+• Use of Excel Sheet
+• Helpful: exposure to some statistical software packages
+• Minitab, ReliaSoft, R4All, eWeibull
+Prerequisite
+Copyright © Cheng Julius Wang All Rights Reserved
+Pre-Class Quiz
+1. Describe the two types of statistical risk of any reliability test.
+2. If I applied statistical methods to determine the sample size for a specific reliability target (or MTTF, 
+MTBF target), it is guaranteed that we will pass the test, correct?
+3. If the answer of Question 2 above is Yes, why? If the answer is No, why?
+4. If the data cannot reject H1 (say, MTBF > 5000 hours), what does it mean in practical sense?
+5. If the data reject the H1 at 5% level, what does it mean in practical sense?
+4
+Copyright © Cheng Julius Wang All Rights Reserved
+5
+• Fundamental Theories
+• Introduction, Statistics, Probability, Reliability Basics
+• Distributions (Binomial, Exponential, Weibull, Normal)
+• Probability Plot: Weibull Plot (median rank)
+• Producer’s Risk (Type I Error)
+• Consumer’s Risk (Type II Error)
+• Testing Hypothesis
+• Reliability Demonstration Tests (RDT) Theory
+• Sample Size Determination Approaches
+• Estimation Approach
+• Method E1: Normal Approximation with Bound Width
+• Method E2: ML Approximate Variance with Bound Ratio
+• Method E3: ML Approximate Variance with Bound Width
+• Risk Control Approach
+• Method R1: Non-Parametric Binomial
+• Method R2: Parametric Binomial
+• Method R3: Exponential Chi-Square
+• Method R4: Weibull Chi-Square
+• Method R5: Repairable System Poisson
+Table of Contents
+• Bayesian Inference
+• Classical vs. Bayesian Statistics
+• Teaser Examples
+• Thomas Bayes
+• Conditional Probability and Bayes Theorem
+• Odds, Bayesian Confidence, and Logit
+• Some Core Principles
+• Prior Information Sources and Quantification
+• Design Change Condition (DCC) Factor
+• Reliability Activities Maturity (RAM) Factor
+• Conjugate Pairs
+• Beta Distribution
+• Method B1: Bayesian Prior Confidence
+• Beta Prior Distribution 
+• Method B2: Bayesian Beta Prior 3-Point
+• Method B3: Bayesian Beta Prior Sub-Systems
+• Gamma Prior Distribution
+• Method B4: Bayesian Gamma Prior 50/95
+• Method B5: Bayesian Gamma Prior BAZE
+Copyright © Cheng Julius Wang All Rights Reserved
+Introduction – Don’t be fooled by chance!
+• Any decision based on limited testing or sampling information will admit the possibility 
+of error where an unreliable design may by chance pass the test, whereas a reliable 
+design may by chance fail it. 
+• The only way to eliminate such sampling error is to test or sample indefinitely. This is 
+impossible in almost any business setting.
+6
+Copyright © Cheng Julius Wang All Rights Reserved
+Two Killer Questions… how many to test and for how long?
+• To design any reliability test, we need to FIRST a) understand the stressor/load 
+distribution (also called customer usage profile, mission profile)…what are they, what 
+are the types of failure mechanisms (and failure modes derived from), b) how to apply 
+them to test condition, and c) what the acceptance criteria should be.  THEN, the 
+following two critical questions are asked:
+• How many samples? 
+• How long should each sample be tested?
+• If sample size is too large, unnecessary costs may be incurred, or resources simply 
+cannot afford it in a business setting.
+• If sample size is too small, the uncertainty of the reliability estimates will be 
+unacceptably high, and the possibility of capturing relevant failures will be low. 
+7
+Copyright © Cheng Julius Wang All Rights Reserved
+Some 500 data points in milli-second (ms)
+50 48 46 31 58 50 46 62 56 67 50 55 53 47 31 48 41 41 46 54 45 36 55 41 67 42 62 46 48 52 24 52 55 45 58 33 37 70 62 41
+37 48 45 48 38 62 48 40 40 61 56 45 50 54 59 72 53 42 52 51 44 56 56 58 52 44 38 63 75 48 62 57 46 59 55 49 57 58 38 56
+51 55 41 58 50 46 51 39 50 66 36 50 40 58 49 65 69 32 45 57 61 45 49 53 60 40 41 46 55 52 39 36 45 49 38 63 59 47 44 68
+55 27 52 51 37 57 63 50 40 48 39 47 65 62 48 43 48 52 51 57 38 39 60 39 61 58 54 66 45 55 49 41 56 59 44 59 58 53 47 43
+59 60 20 40 48 57 44 50 45 30 50 52 47 33 61 42 42 41 52 63 49 33 45 42 56 40 62 65 57 54 64 33 50 50 44 54 49 48 34 40
+42 55 37 42 64 48 49 51 52 63 38 58 60 35 73 50 52 60 35 48 47 53 72 47 51 48 53 36 59 55 50 52 48 42 48 39 56 58 49 39
+44 51 53 50 53 63 49 42 41 47 55 48 56 55 43 48 42 37 60 24 35 34 51 42 18 49 40 52 55 46 70 78 46 42 50 33 59 54 48 67
+52 34 54 52 37 44 43 55 32 59 50 45 45 68 54 43 42 53 53 56 47 40 52 57 59 41 39 54 45 52 48 45 65 45 58 31 52 50 60 63
+47 57 66 59 68 51 51 57 50 64 33 41 60 50 61 61 41 64 56 59 47 62 74 57 53 69 50 39 62 47 48 57 43 41 70 42 59 46 50 56
+42 46 31 61 68 55 57 44 34 50 61 40 41 49 52 49 58 62 34 19 39 53 60 66 43 55 45 51 29 67 47 46 55 38 42 41 34 47 46 63
+60 46 36 57 49 53 53 38 46 64 38 55 44 64 49 47 69 38 46 57 52 64 53 27 58 41 43 41 52 56 53 56 56 44 59 54 54 56 46 73
+51 47 36 73 32 42 45 43 35 60 47 57 66 59 52 34 49 29 41 44 78 60 49 51 51 48 43 37 58 36 50 49 58 43 48 39 47 58 57 46
+57 55 60 48 58 58 65 47 42 55 52 55 47 48 40 68 49 45 58 50
+8
+Copyright © Cheng Julius Wang All Rights Reserved
+• Sort the data from the smallest to  
+the largest, then divide them into 
+different intervals (or called cells, 
+bins, ranges)
+•  Then count the number of data 
+point (or percentage) in each 
+interval. 
+Histogram is a great visual tool to show the central tendency 
+and range of the data
+9
+Copyright © Cheng Julius Wang All Rights Reserved
+• Sample Mean = Average = Arithmetic Mean = ҧ𝑥 =
+σ𝑖=1
+𝑛 𝑥𝑖
+𝑛 .
+• A measure of central tendency
+• 𝑛 is the sample size.
+• Sample Standard Deviation = 𝑠 =
+σ𝑖=1
+𝑛 𝑥𝑖− ҧ𝑥 2
+𝑛−1   .
+• A measure of dispersion (spread of the data)
+• Sample vs. Population
+• 𝜇, 𝜎 (Greek letters for population)
+• ҧ𝑥, 𝑆 (Roman letters for sample)
+Sample mean indicates central tendency; sample standard 
+deviation indicates the amount of data dispersion
+10
+Copyright © Cheng Julius Wang All Rights Reserved
+Histogram- 4 Intervals（500 Data Points）
+• The % of data within 30 - 45 
+(148/500) is 29.6%.
+• Probability density = % in a 
+unit range =
+  （0.296/[45 − 30]) = 0.0197.
+11
+Copyright © Cheng Julius Wang All Rights Reserved
+Histogram- 8 Intervals and 16 Intervals; they become more and 
+more like a continuous curve!
+12
+8 Intervals/bins 16 Intervals/bins
+Copyright © Cheng Julius Wang All Rights Reserved
+• When the bin size (interval width) becomes smaller and smaller, the histogram looks 
+more like a continuous curve
+• Divide the % value in each bin by the bin size (the width of the interval), we get the 
+Density (which is the % in a unit range). See next slide.
+• This curve is called Probability Density Function (pdf), usually it is written as 𝑓(𝑥) or 
+lowercase “pdf ”.
+From Histogram to Probability Density Function (pdf)
+13
+Copyright © Cheng Julius Wang All Rights Reserved
+• 𝑡 is “time to failure” (a continuous random variable).  
+𝑡 has a probability density function 𝑓(𝑡).
+• 𝑓(𝑡) is the density
+• “𝑓(𝑡)(𝑑𝑡)” is probability (𝑑𝑡 is a small time interval).
+Probability Density Function (pdf)
+(It is not a probability; it is the density of probability)
+14
+f(t)
+t
+• Each bin in the Histogram has a width of 2.5 ms.
+• The specific bin (between 28.75 and 31.25) 
+which centers at 30 has 7 data points.
+• 𝑓 30 =
+7
+500×(2.5) = 0.0056
+0.0056 in 
+f(t) scale
+Copyright © Cheng Julius Wang All Rights Reserved
+• The probability of a random variable within 𝑎 𝑎𝑛𝑑 𝑏 (𝑎 <  𝑏) is:
+We use pdf to calculate “probability between any two points”
+𝑃(𝑎 ≤ 𝑡 ≤ 𝑏) = න
+𝑎
+𝑏
+𝑓(𝑡)𝑑𝑡
+15
+• The probability (= A) that 𝑡 𝑖𝑠 <  𝑎 is the area from “0 to a” under the 
+curve
+• The probability (= B) that 𝑡 𝑖𝑠 𝑤𝑖𝑡ℎ𝑖𝑛[𝑎, 𝑏] is the area from “a to b” 
+under the curve
+• The probability (= C) that 𝑡 𝑖𝑠 >  𝑏 is the area from “b to infinity” 
+under the curve
+f(t)
+t
+A CB
+Copyright © Cheng Julius Wang All Rights Reserved
+Cumulative Distribution Function: CDF   (It is Probability!)
+𝐹 𝑎 =׬−∞
+𝑎
+𝑓 𝑡 𝑑𝑡 = 𝑃(𝑡 ≤ 𝑎)
+𝑓(𝑡) = 𝑑(𝐹(𝑡))
+𝑑𝑡
+16
+• 𝐹(𝑡) is used to represent for CDF (typically uppercase)
+• CDF is the area under the pdf curve
+f(t)
+𝑷(𝒕 ≤ 𝒂)
+t
+Copyright © Cheng Julius Wang All Rights Reserved
+f(t)
+𝑷(𝒕 ≤ 𝒂)
+t
+(time to failure)
+Reliability at any time “𝒂” equals “1-CDF” at time “𝒂” 
+𝐹 𝑎 =׬−∞
+𝑎
+𝑓 𝑡 𝑑𝑡 = 𝑃(𝑡 ≤ 𝑎)
+𝑓(𝑡) = 𝑑(𝐹(𝑡))
+𝑑𝑡
+17
+• 𝐹(𝑡) is used for CDF (typically uppercase)
+• CDF is the area under the pdf curve
+• When “𝑡” is the time-to-failure…
+𝑹 𝒂 = 𝟏 − 𝑭 𝒂
+= න
+𝑎
+∞
+𝑓 𝑡 𝑑𝑡 = 𝑃(𝑡 ≥ 𝑎)
+• Reliability at time point  
+“𝑎” is the probability that 
+all items survive beyond 
+time point “𝑎”.
+Copyright © Cheng Julius Wang All Rights Reserved
+Example: Compressor
+• Intuitively, these compressors tend to fail faster over time! One failed in the first 3 days, 9 failed 
+between the 3rd and 4th day.
+• How will you measure the tendency of failure over time?
+• Twenty compressors are under life testing. After 3 days, 19 of them still work.  After 4 days, only 10 
+compressors still work/function.
+18
+𝑁 = 20 𝑁𝑠(𝑡) = 19 𝑁𝑠(𝑡 + 𝑑𝑡) = 10
+(𝑡 + 𝑑𝑡)=4
+For example, (𝑑𝑡)=1
+t=30
+t: time
+t=2t=1
+Copyright © Cheng Julius Wang All Rights Reserved
+Hazard Rate: 𝒉(𝒕)
+19
+ℎ(𝑡) = 𝑁𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑓𝑎𝑖𝑙𝑢𝑟𝑒𝑠 𝑖𝑛 (𝑡, 𝑡 + 𝑑𝑡)
+(𝑵𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝒘𝒐𝒓𝒌𝒊𝒏𝒈 𝒑𝒂𝒓𝒕𝒔 𝒂𝒕 "𝒕") ∗ (𝑡𝑖𝑚𝑒 𝑖𝑛𝑡𝑒𝑟𝑣𝑎𝑙 d𝑡）
+𝑁 = 20 𝑁𝑠(𝑡) = 19 𝑁𝑠(𝑡 + 𝑑𝑡) = 10
+(𝑡 + 𝑑𝑡)=4
+(𝑑𝑡)=1
+t=30
+t: time
+t=2t=1
+• How will you describe what hazard rate is?
+Copyright © Cheng Julius Wang All Rights Reserved
+Hazard Rate: 𝒉(𝒕) (called “Failure Rate” in most industries)
+20
+𝑁 = 20 𝑁𝑠(𝑡) = 19 𝑁𝑠(𝑡 + 𝑑𝑡) = 10
+(𝑡 + 𝑑𝑡)=4
+(𝑑𝑡)=1
+t=30
+t: time
+t=2t=1
+ℎ(𝑡) = 𝑁𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑓𝑎𝑖𝑙𝑢𝑟𝑒𝑠 𝑖𝑛 (𝑡, 𝑡 + 𝑑𝑡)
+(𝑵𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝒘𝒐𝒓𝒌𝒊𝒏𝒈 𝒑𝒂𝒓𝒕𝒔 𝒂𝒕 "𝒕") ∗ (𝑡𝑖𝑚𝑒 𝑖𝑛𝑡𝑒𝑟𝑣𝑎𝑙 d𝑡）
+= lim
+𝑑𝑡→0
+𝑁𝑠(𝑡) − 𝑁𝑠(𝑡 + 𝑑𝑡)
+𝑁𝑠 𝑡 ∗ 1
+𝑑𝑡
+= lim
+𝑑𝑡→0
+% 𝑜𝑓 𝑝𝑎𝑟𝑡𝑠 𝑡ℎ𝑎𝑡 𝑤𝑒𝑟𝑒 𝑤𝑜𝑟𝑘𝑖𝑛𝑔 𝑎𝑡 𝑡𝑖𝑚𝑒 𝑡 𝑓𝑎𝑖𝑙𝑒𝑑 𝑖𝑛 (𝑡, 𝑡 + 𝑑𝑡)
+𝑑𝑡
+Copyright © Cheng Julius Wang All Rights Reserved
+Example: Compressor
+• ℎ(3) =? (Hazard rate after 3 days of testing)
+ℎ 3 =  
+19−10
+19× 4−3 =
+9
+19 =  0.474.  What does 0.474 mean?
+21
+𝑁 = 20 𝑁𝑠(𝑡) = 19 𝑁𝑠(𝑡 + 𝑑𝑡) = 10
+(𝑡 + 𝑑𝑡)=4
+(𝑑𝑡)=1
+t=30
+t: time
+t=2t=1
+Copyright © Cheng Julius Wang All Rights Reserved
+How do we describe Probability Density Function – pdf ?
+22
+𝑓(𝑡) = 𝑁𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝐹𝑎𝑖𝑙𝑢𝑟𝑒𝑠 𝑖𝑛 (𝑡, 𝑡 + 𝑑𝑡)
+(𝑻𝒐𝒕𝒂𝒍 𝑵𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝑷𝒂𝒓𝒕𝒔) ∗ (𝑇𝑖𝑚𝑒 𝑖𝑛𝑡𝑒𝑟𝑣𝑎𝑙 𝑑𝑡）
+= lim
+𝑑𝑡→0
+𝑁𝑠(𝑡) − 𝑁𝑠(𝑡 + 𝑑𝑡)
+𝑁 ∗ 1
+𝑑𝑡
+= lim
+𝑑𝑡→0
+% 𝑜𝑓 𝑎𝑙𝑙 𝑝𝑎𝑟𝑡𝑠 𝑎𝑡 𝑡𝑖𝑚𝑒 0 𝑓𝑎𝑖𝑙𝑒𝑑 𝑖𝑛 (𝑡, 𝑡 + 𝑑𝑡)
+𝑑𝑡
+𝑁 = 20 𝑁𝑠(𝑡) = 19 𝑁𝑠(𝑡 + 𝑑𝑡) = 10
+(𝑡 + 𝑑𝑡)=4
+(𝑑𝑡)=1
+t=30
+t: time
+t=2t=1
+Copyright © Cheng Julius Wang All Rights Reserved
+𝒉(𝒕) 𝒗𝒔. 𝒇(𝒕): Different Meanings
+23
+ℎ(𝑡) = 𝑁𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑓𝑎𝑖𝑙𝑢𝑟𝑒𝑠 𝑖𝑛 (𝑡, 𝑡 + 𝑑𝑡)
+(𝑵𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝒘𝒐𝒓𝒌𝒊𝒏𝒈 𝒑𝒂𝒓𝒕𝒔 𝒂𝒕 "𝒕") ∗ (𝑡𝑖𝑚𝑒 𝑖𝑛𝑡𝑒𝑟𝑣𝑎𝑙 d𝑡）
+= lim
+𝑑𝑡→0
+𝑁𝑠(𝑡) − 𝑁𝑠(𝑡 + 𝑑𝑡)
+𝑁𝑠 𝑡 ∗ 1
+𝑑𝑡
+= lim
+𝑑𝑡→0
+% 𝑜𝑓 𝑝𝑎𝑟𝑡𝑠 𝑡ℎ𝑎𝑡 𝑤𝑒𝑟𝑒 𝑤𝑜𝑟𝑘𝑖𝑛𝑔 𝑎𝑡 𝑡𝑖𝑚𝑒 𝑡 𝑓𝑎𝑖𝑙𝑒𝑑 𝑖𝑛 (𝑡, 𝑡 + 𝑑𝑡)
+𝑑𝑡
+𝑓 𝑡 = 𝑁𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝐹𝑎𝑖𝑙𝑢𝑟𝑒𝑠 𝑖𝑛 (𝑡, 𝑡 + 𝑑𝑡)
+(𝑻𝒐𝒕𝒂𝒍 𝑵𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝑷𝒂𝒓𝒕𝒔) ∗ (𝑇𝑖𝑚𝑒 𝑖𝑛𝑡𝑒𝑟𝑣𝑎𝑙 𝑑𝑡）
+= lim
+𝑑𝑡→0
+𝑁𝑠(𝑡) − 𝑁𝑠(𝑡 + 𝑑𝑡)
+𝑁 ∗ (𝑑𝑡) = lim
+𝑑𝑡→0
+𝑁𝑠(𝑡) − 𝑁𝑠(𝑡 + 𝑑𝑡)
+𝑁 ∗ 1
+𝑑𝑡
+= lim
+𝑑𝑡→0
+% 𝑜𝑓 𝑎𝑙𝑙 𝑝𝑎𝑟𝑡𝑠 𝑎𝑡 𝑡𝑖𝑚𝑒 0 𝑓𝑎𝑖𝑙𝑒𝑑 𝑖𝑛 (𝑡, 𝑡 + 𝑑𝑡)
+𝑑𝑡
+Copyright © Cheng Julius Wang All Rights Reserved
+Example: Compressor
+• ℎ(3) =? (Hazard rate after 3 days of testing). ℎ 3 =  
+19−10
+19× 4−3 =
+9
+19 =  0.474. 
+• 𝑓(3) =? (probability density between 3 and 4 days). 𝑓(3) =  
+19−10
+20× 4−3 =
+9
+20 =  0.45.
+• 𝑓(0) =? (probability density between 0 and 3 days). 𝑓(0) =  
+20−19
+20× 3−0 =
+1
+60 =  0.017.
+24
+𝑁 = 20 𝑁𝑠(𝑡) = 19 𝑁𝑠(𝑡 + 𝑑𝑡) = 10
+(𝑡 + 𝑑𝑡)=4
+(𝑑𝑡)=1
+t=30
+t: time
+t=2t=1
+Copyright © Cheng Julius Wang All Rights Reserved
+Reliability = 𝑹(𝒕)
+𝑅 𝑡 = 𝑁𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑊𝑜𝑟𝑘𝑖𝑛𝑔 𝑃𝑎𝑟𝑡𝑠 𝑎𝑡 𝑡𝑖𝑚𝑒 𝑡
+𝑇𝑜𝑡𝑎𝑙 𝑁𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑃𝑎𝑟𝑡𝑠
+= 𝑁𝑠(𝑡)
+𝑁
+= 𝑃(𝑝𝑎𝑟𝑡 𝑖𝑠 𝑤𝑜𝑟𝑘𝑖𝑛𝑔 𝑎𝑡 𝑡𝑖𝑚𝑒 𝑡)
+25
+Copyright © Cheng Julius Wang All Rights Reserved
+26
+• Conditional reliability is the probability that a product will still work for additional time of “t”, given it 
+has worked for “T” without failure.  Sometimes it is called “Mission Reliability”. We can write that 
+𝑅 𝑡 𝑇) =
+)𝑅(𝑇+𝑡
+)𝑅(𝑇  
+• For example, a flight has operated for 500 hours without failure, what is the probability that it will work 
+without failure in the next mission of 3 hours?
+Conditional Reliability
+𝑅 3 500) = )𝑅(500+ 3
+)𝑅(500 = )𝑅(503
+)𝑅(500
+Copyright © Cheng Julius Wang All Rights Reserved
+Example: Compressor
+• 𝑅(3)  =  19/20 =  0.95
+• 𝑅(1 𝑑𝑎𝑦 | 3 𝑑𝑎𝑦𝑠)  =  𝑅(4)/𝑅(3)  =
+10
+20 ÷
+19
+20 =
+10
+19 = 0.526
+27
+𝑁 = 20 𝑁𝑠(𝑡) = 19 𝑁𝑠(𝑡 + 𝑑𝑡) = 10
+(𝑡 + 𝑑𝑡)=4
+(𝑑𝑡)=1
+t=30
+t: time
+t=2t=1
+Copyright © Cheng Julius Wang All Rights Reserved
+𝒇(𝒕), 𝑹(𝒕), 𝒂𝒏𝒅 𝒉(𝒕) Relationship
+h(t) = lim
+𝑑𝑡→0
+𝑁𝑠(𝑡) − 𝑁𝑠(𝑡 + 𝑑𝑡)
+𝑁𝑠(𝑡) × (𝑑𝑡)
+= lim
+𝑑𝑡→0
+𝑁𝑠(𝑡) − 𝑁𝑠(𝑡 + 𝑑𝑡)
+𝑵 × 𝑑𝑡 × 𝑵
+𝑁𝑠 𝑡 = 𝑓 𝑡 × 1
+𝑅 𝑡 = 𝑓(𝑡)
+𝑅(𝑡)
+28
+• Proof:
+ℎ 𝑡 = 𝑓(𝑡)
+𝑅(𝑡)
+• Fundamental reliability equation #1. 
+• No distribution assumption.
+Copyright © Cheng Julius Wang All Rights Reserved
+Cumulative Hazard Rate: 𝑯(𝒕)
+𝐶𝑢𝑚𝑢𝑙𝑎𝑡𝑖𝑣𝑒 𝐻𝑎𝑧𝑎𝑟𝑑 𝑅𝑎𝑡𝑒 𝐻(𝑡) = න
+0
+𝑡
+ℎ 𝑥 𝑑𝑥
+𝐹𝑟𝑜𝑚 𝑡ℎ𝑒 𝑑𝑎𝑡𝑎，𝐻(𝑡) = ෍ ℎ 𝑥 𝑑𝑥
+29
+Copyright © Cheng Julius Wang All Rights Reserved
+𝑹(𝒕) 𝒂𝒏𝒅 𝑯(𝒕) Relationship
+30
+𝑓 𝑡 = 𝑑𝐹(𝑡)
+𝑑𝑡 = 𝑑[1 − 𝑅(𝑡)]
+𝑑𝑡 = −𝑅′(𝑡)
+ℎ(𝑡) = 𝑓(𝑡)
+𝑅(𝑡) = −𝑅′(𝑡)]
+𝑅(𝑡) = −𝑑[𝑙𝑛𝑅 𝑡 ]
+𝑑𝑡
+න
+0
+𝑡
+ℎ 𝑥 𝑑𝑥= −𝑙𝑛𝑅 𝑡 = 𝐻(𝑡)
+𝑅 𝑡 = 𝑒𝑥𝑝−𝐻(𝑡) = 𝑒−𝐻(𝑡)
+• Fundamental reliability equation #2. 
+• No distribution assumption.
+• Proof:
+Copyright © Cheng Julius Wang All Rights Reserved
+Some statistics often used in statistical data analysis
+• Mean
+• Standard Deviation = 𝑉𝑎𝑟𝑖𝑎𝑛𝑐𝑒
+• Range
+• Median
+• Mode
+31
+Copyright © Cheng Julius Wang All Rights Reserved
+Range
+LARGEST – smallest
+The largest number subtract the smallest 
+number
+1,1,3,5,7 𝑅𝑎𝑛𝑔𝑒 =  7 − 1 = 6
+3,5,5,8 𝑅𝑎𝑛𝑔𝑒 =  8 − 3 = 5
+2,3,4,4 𝑅𝑎𝑛𝑔𝑒 =  4 − 2 = 2
+Median
+Middle
+The middle value when numbers are in 
+order
+1,3,6,9,15 𝑀𝑒𝑑𝑖𝑎𝑛= 6
+2,4,5,5,7,8 𝑀𝑒𝑑𝑖𝑎= 5
+1,4,5,6,9,12 𝑀𝑒𝑑𝑖𝑎𝑛= (5 + 6)/2 = 5.5
+Mean
+Average
+Find the total of all the numbers, then 
+divide by the amount of numbers
+2,2,3,5,8
+2 + 2 + 3 + 5 + 8 =  20
+20/5 = 4;  𝑀𝑒𝑎𝑛 =  4
+Mode
+Mode = Most
+The value which is written the most.
+2,4,4,5,6 𝑀𝑜𝑑𝑒= 4
+3,3,3,4,4,6 𝑀𝑜𝑑𝑒= 3
+2,3,3,4,4,5,7 𝑀𝑜𝑑𝑒= 3 𝑎𝑛𝑑 4
+32
+Some statistics often used in statistical data analysis
+Copyright © Cheng Julius Wang All Rights Reserved
+33
+What is the “Mean” value?
+• A fair die of 6 faces (each face has a value of 1, 2, 3, 4, 5, and 6). What is the average value (mean value) 
+when you throw it for million times?
+
+Copyright © Cheng Julius Wang All Rights Reserved
+34
+• Throw a fair die a million times, what is the average value (expected value) showing up?
+How do we estimate the mean value?
+𝑀𝑒𝑎𝑛= 1 × 1
+6 + 2 × 1
+6 + ⋯ + 6 × 1
+6 =? ?
+Copyright © Cheng Julius Wang All Rights Reserved
+35
+• Throw a fair die a million times, what is the average value (expected value) showing up?
+Mean-Time-to-Failure (MTTF) explained
+𝑀𝑒𝑎𝑛= 1 × 1
+6 + 2 × 1
+6 + ⋯ + 6 × 1
+6 = ෍
+𝑡=1
+6
+𝑡 × 𝑓(𝑡)
+𝑀𝑒𝑎𝑛 𝑇𝑖𝑚𝑒 𝑡𝑜 𝐹𝑎𝑖𝑙𝑢𝑟𝑒= 𝑀𝑇𝑇𝐹= න
+0
+∞
+𝑡 × 𝑓(𝑡)𝑑𝑡
+𝑀𝑒𝑎𝑛= 1 × 1
+6 + 2 × 1
+6 + ⋯ + 6 × 1
+6 = 3.5
+Arithmetic average 
+(mean) may not 
+exist in the real 
+world.
+Copyright © Cheng Julius Wang All Rights Reserved
+What does this “Life” mean of a light bulb?
+36
+• What is “Life”? 
+• How reliable is the light bulb? 
+• Do you think this light bulb can survive 22.8 years?
+https://Stock.adobe.com.search/free
+Copyright © Cheng Julius Wang All Rights Reserved
+Answer: Light Bulb “Life”?
+37
+𝑅 1 𝑦𝑒𝑎𝑟 = exp − 3 × 365
+24966 = 0.96
+𝑅 3 𝑦𝑒𝑎𝑟 = exp − 3 × 365 × 3
+24966 = 0.88
+𝑅 5 𝑦𝑒𝑎𝑟 = exp − 3 × 365 × 5
+24966 = 0.80
+𝑅 10 𝑦𝑒𝑎𝑟 = exp − 3 × 365 × 10
+24966 = 0.64
+~ 4 out of 100 failed
+(4%)
+~ 12 out of 100 failed
+(12%)
+~ 20 out of 100 failed
+(20%)
+~ 36 out of 100 failed
+(36%)
+• Use Rate = 3 hours/day
+• 22.8 years “Life”… It is the MTTF.
+• Equivalent hours of “Life” = 3 × 365 × 22.8 = 24966 ℎ𝑜𝑢𝑟𝑠= 𝑀𝑇𝑇𝐹
+• What is the reliability at 1-year, 3-year, 5-year, and 10-year of usage?
+𝑅 𝑡 = exp −𝜆𝑡
+= exp − 𝑡
+𝜃
+Copyright © Cheng Julius Wang All Rights Reserved
+38
+• Median Life: The value at which the area of its left side and the area of its right side 
+under the pdf curve are the same:
+• For this set of sorted data: 1, 3, 5, 10, 11, 14, 16, the Median is the value in the middle 
+of the series, 10.
+• The average (or mean) of the data set is (1+3+5+10+11+14+16)/7 = 8.57.
+Median Life
+න
+−∞
+𝑀𝑒𝑑𝑖𝑎𝑛
+𝑓 𝑡 𝑑𝑡 = 50%
+Copyright © Cheng Julius Wang All Rights Reserved
+39
+• Fundamental Theories
+• Introduction, Statistics, Probability, Reliability Basics
+• Distributions (Binomial, Exponential, Weibull, Normal)
+• Probability Plot: Weibull Plot (median rank)
+• Producer’s Risk (Type I Error)
+• Consumer’s Risk (Type II Error)
+• Testing Hypothesis
+• Reliability Demonstration Tests (RDT) Theory
+• Sample Size Determination Approaches
+• Estimation Approach
+• Method E1: Normal Approximation with Bound Width
+• Method E2: ML Approximate Variance with Bound Ratio
+• Method E3: ML Approximate Variance with Bound Width
+• Risk Control Approach
+• Method R1: Non-Parametric Binomial
+• Method R2: Parametric Binomial
+• Method R3: Exponential Chi-Square
+• Method R4: Weibull Chi-Square
+• Method R5: Repairable System Poisson
+Table of Contents
+• Bayesian Inference
+• Classical vs. Bayesian Statistics
+• Teaser Examples
+• Thomas Bayes
+• Conditional Probability and Bayes Theorem
+• Odds, Bayesian Confidence, and Logit
+• Some Core Principles
+• Prior Information Sources and Quantification
+• Design Change Condition (DCC) Factor
+• Reliability Activities Maturity (RAM) Factor
+• Conjugate Pairs
+• Beta Distribution
+• Method B1: Bayesian Prior Confidence
+• Beta Prior Distribution 
+• Method B2: Bayesian Beta Prior 3-Point
+• Method B3: Bayesian Beta Prior Sub-Systems
+• Gamma Prior Distribution
+• Method B4: Bayesian Gamma Prior 50/95
+• Method B5: Bayesian Gamma Prior BAZE
+Copyright © Cheng Julius Wang All Rights Reserved
+Binomial Distribution
+40
+• Suppose we have 𝑛 light bulbs on test for a specified period of time, 
+for example, 1000 hours. 
+• After the test, each light bulb is classified as passing the test (success) 
+or failing the test (failure). 
+• We are interested in the probability that exactly 𝒙 bulbs fail the test 
+(or 𝑛− 𝑥 bulbs survive the test). If we assume the probability of 
+failure of any randomly selected light bulb is 𝑝 and bulbs fail 
+independently of each other, then the probability function is as 
+follows:
+𝑃 𝑥 = 𝑛
+𝑥 𝑝𝑥 1 − 𝑝 𝑛−𝑥, 𝑤ℎ𝑒𝑟𝑒 𝑥 = 0, 1, 2, … , 𝑛
+𝑛
+𝑥 = 𝑛!
+𝑛 − 𝑥 ! 𝑥!
+Ƹ𝑝 = Τ𝑟 𝑛
+𝑀𝑒𝑎𝑛= 𝐸 𝑋 = 𝑛𝑝
+𝑉𝑎𝑟𝑖𝑎𝑛𝑐𝑒= 𝑉 𝑋 = 𝑛𝑝(1 − 𝑝)
+𝑃(𝑥 ≤ 𝑟) = ෍
+𝑥=0
+𝑟
+𝑛
+𝑥 𝑝𝑥(1 − 𝑝)𝑛−𝑥
+• Cumulative binomial distribution function
+Copyright © Cheng Julius Wang All Rights Reserved
+41
+Exponential Distribution pdf, Mean, and Variance
+𝑓 𝑡 = 𝜆𝑒−𝜆𝑡
+𝐸 𝑇 = ൗ1 𝜆
+𝑉 𝑇 = ൗ1
+𝜆2
+• 𝑡 is failure time, a random variable 
+• 𝜆 (lambda) is the distribution parameter =  hazard rate 
+(or failure rate).
+•
+1
+𝜆 = 𝑀𝑇𝑇𝐹= 𝜃 
+Copyright © Cheng Julius Wang All Rights Reserved
+42
+Exponential Reliability Function and Other Functions
+𝑹 𝒕 = 1 − න
+0
+𝑡
+𝜆𝑒−𝜆𝑠 𝑑𝑠 = 1 − 1 − 𝑒−𝜆𝑡 = 𝒆−𝝀𝒕 = 𝒆− 𝒕
+𝑴𝑻𝑻𝑭
+𝐹 𝑡 = 1 − 𝑅 𝑡 = 1 − 𝑒−𝜆𝑡 = 1 − 𝑒− 𝑡
+𝑀𝑇𝑇𝐹
+𝑡𝑅 = − 𝑙𝑛𝑅
+𝜆 = −𝑙𝑛𝑅× 𝑀𝑇𝑇𝐹
+𝐵10 = − 𝑙𝑛0.9
+𝜆 = −𝑙𝑛(0.9) × 𝑀𝑇𝑇𝐹
+ℎ 𝑡 = 𝑓 𝑡
+𝑅 𝑡 = 𝜆𝑒−𝜆 𝑡
+𝑒−𝜆 𝑡 = 𝜆 = 1
+𝑀𝑇𝑇𝐹
+Copyright © Cheng Julius Wang All Rights Reserved
+43
+• For an Exponential random variable, its mean value (mean life) is its 63.2% percentile. It indicates that  
+63.2% of the product already failed by the mean life.
+Mean Life (MTTF) of the Exponential Distribution
+𝑃𝑟𝑜𝑜𝑓:  𝑀𝑇𝑇𝐹= න
+0
+∞
+𝑡𝑓 𝑡 = න
+0
+∞
+𝑡−𝑑𝑅(𝑡)
+𝑑𝑡 𝑑𝑡 = − න
+0
+∞
+𝑡𝑑𝑅 𝑡 = −𝑡𝑅(𝑡)| ∞
+0 + න
+0
+∞
+𝑅 𝑡 𝑑𝑡
+= න
+0
+∞
+𝑒−𝜆𝑡𝑑𝑡 = 1
+𝜆
+𝑅 𝑡 = 1
+𝜆 = 𝑒−𝜆 ൗ1 𝜆 = 𝑒−1 = ൗ1 2.71828= 0.36788 = 36.8%
+𝑀𝑇𝑇𝐹= 1
+𝜆
+Copyright © Cheng Julius Wang All Rights Reserved
+44
+Weibull Distribution pdf, Mean, and Variance
+𝑓(𝑡) = 𝛽
+𝜂
+𝑡
+𝜂
+𝛽−1
+𝑒
+− 𝑡
+𝜂
+𝛽
+• β = Shape Parameter. Also called “Weibull Slope”. 
+The larger the value is, the closer the failure times 
+are.
+• η = Scale Parameter.  Also called  “Characteristic 
+Life”. It is the 63.2𝑡ℎ percentile of the failure time. 
+β=4
+β=1
+β=0.5
+𝐸 𝑇 = 𝜂Γ 1 + 1
+𝛽
+𝑉 𝑇 = 𝜂2 Γ 1 + 2
+𝛽 − Γ 1 + 1
+𝛽
+2
+
+Copyright © Cheng Julius Wang All Rights Reserved
+45
+Weibull Reliability Function and Other Functions
+𝑅(𝑡) = 𝑒
+− 𝑡
+𝜂
+𝛽
+𝐹(𝑡) = 1 − 𝑒
+− 𝑡
+𝜂
+𝛽
+,
+𝑡𝑅 = 𝜂 −𝑙𝑛𝑅
+1
+𝛽
+𝐵10 = 𝜂 −𝑙𝑛0.9
+1
+𝛽
+)ℎ(𝑡 = 𝑓(𝑡)
+𝑅(𝑡) =
+𝛽
+𝜂
+𝑡
+𝜂
+𝛽−1
+𝑒
+− 𝑡
+𝜂
+𝛽
+𝑒
+− 𝑡
+𝜂
+𝛽 = 𝛽
+𝜂
+𝑡
+𝜂
+𝛽−1
+𝐻(𝑡) = 𝑡
+𝜂
+𝛽
+Copyright © Cheng Julius Wang All Rights Reserved
+Average Failure Rate: A value that typifies failure-rate 
+behavior over a time interval
+• Average Failure Rate:
+• When 𝛽 = 1, Weibull becomes Exponential and the hazard rate is the Average Failure Rate.
+• When 𝛽 ≠ 1, the Average Failure Rate is proportional to the 𝛽 value.
+• When the 𝛽 value can be obtained from historical data (warranty, for example), then this equation could 
+be used for failure rate target setting.
+ℎ 𝑡 = 𝛽
+𝜂
+𝑡
+𝜂
+𝛽−1
+= 𝛽
+𝑡
+𝑡
+𝜂
+𝛽
+= 𝛽
+𝑡 × 𝐻 𝑡 = 𝛽 𝐻(𝑡)
+𝑡
+46
+𝐴𝐹𝑅(𝑡1, 𝑡2) =
+׬𝑡1
+𝑡2 ℎ 𝑡 𝑑𝑡
+𝑡2 − 𝑡1
+= 𝐻 𝑡2 − 𝐻(𝑡1)
+𝑡2 − 𝑡1
+= 𝑙𝑛𝑅 𝑡1 − 𝑙𝑛𝑅(𝑡2)
+𝑡2 − 𝑡1
+Copyright © Cheng Julius Wang All Rights Reserved
+47
+• Decreasing Failure Rate: (𝜷 <  𝟏)
+• Time-to-failure tend to increase stochastically over time.
+• Interpretation: could be infant mortality (early life) failures caused by assembly/manufacturing processes at OEM/suppliers. 
+Software bugs also show up earlier once the product is launched.
+• Constant Failure Rate: (𝜷 =  𝟏)
+• Time-to-failure tend to occur randomly.
+• Interpretation: could be failures caused by unpredictable random load and/or environmental stresses. Software bugs that are 
+triggered when large volume of products have been used in the field. Note that there is no random cause of failure. Only the 
+failure time is random.
+• Increasing Failure Rate: (𝜷 >  𝟏)
+• Time-to-failure tend to decrease stochastically over time.
+• Interpretation: could be failures caused by fatigue, wear-out, or other cumulative damage type of failure mechanisms resulting 
+in functional characteristics degradation/deterioration.
+The Statistical Meaning of Weibull Shape Parameter (𝜷)
+Note that the above “guidelines” provide only direction for failure analysis.  They should NOT be used as absolute “rules” 
+to determine the root cause.  The real failure root cause must be derived from failure analysis.
+Copyright © Cheng Julius Wang All Rights Reserved
+48
+𝑓 𝑡 = 1
+𝜎 2𝜋
+𝑒𝑥𝑝 − 𝑡 − 𝜇 2
+2𝜎2 = 1
+𝜎 𝜙(𝑧)
+• It is impossible to evaluate this integral (in terms of 𝑡) without resorting 
+to numerical methods.  Hence, we use a simple transformation of 
+variables, 𝑧 =
+𝑡−𝜇
+𝜎 , and this allows the evaluation to be independent of 
+𝜇 and 𝜎.
+Normal Distribution pdf, Mean, and Variance
+𝐸 𝑡 = 𝜇
+𝑉 𝑡 = 𝜎2
+• The density, 𝜙(𝑧) =
+1
+2𝜋 𝑒𝑥𝑝 −
+(𝑧)2
+2 , has 𝜇 = 0 and σ = 1. 
+It is called “standard normal distribution”.
+Copyright © Cheng Julius Wang All Rights Reserved
+49
+Normal Reliability Function and Other Functions
+𝑅 𝑡 = 1 − 𝐹 𝑡 = 1 − Φ(𝑡)
+𝐹 𝑡 = Φ 𝑧 = Φ 𝑡 − 𝜇
+𝜎 = 1
+2𝜋
+න
+−∞
+𝑧
+𝑒𝑥𝑝 − (𝑡)2
+2 𝑑𝑡
+𝑡𝑅 = 𝜇 + 𝜎𝑍𝑅
+𝐵10 = 𝜇 + 𝜎𝑍0.9 = 𝜇 + 1.282× 𝜎
+)ℎ(𝑡 = 𝑓(𝑡)
+𝑅(𝑡) =
+1
+𝜎 𝜙(𝑧)
+1 − Φ(𝑡)
+
+Copyright © Cheng Julius Wang All Rights Reserved
+50
+• For the commonly used life distributions such as 
+Weibull, Normal, Exponential and Log-normal, 
+the easiest method is to use the probability plot 
+method.
+• This method plots the data on a specialized 
+Probability Paper.  Each data point has an 
+associated probability.
+• To get a probability plot for a distribution, 
+you need to use the Probability Paper for that 
+distribution. Each distribution has a unique 
+Probability Plot for it.  Software can easily 
+do it today.  It can be manually done too.
+Probability Plot
+
+Copyright © Cheng Julius Wang All Rights Reserved
+51
+• The Probability Paper can linearize the CDF (cumulative distribution function) 
+function against lifetime T . For example, for the 2 Parameter Weibull distribution, its 
+CDF (or probability of failure, 𝐹(𝑡)) is:
+Weibull Probability Plot
+𝐹 𝑡 = 1 − 𝑅 𝑡 = 1 − 𝑒
+− 𝑡
+𝜂
+𝛽
+• Note that 𝐹(𝑡) is not a linear function of lifetime T.
+Copyright © Cheng Julius Wang All Rights Reserved
+52
+• Weibull CDF (or the probability of failure 𝐹(𝑡)) can be linearized. 
+𝑙𝑛 𝑙𝑛 1
+1 − 𝐹(𝑡) = 𝛽ln(𝑡) − 𝛽ln(𝜂)
+Weibull Probability Plot
+𝐹 𝑡 = 1 − 𝑅 𝑡 = 1 − 𝑒
+− 𝑡
+𝜂
+𝛽
+1 − 𝐹 𝑡 = 𝑒
+− 𝑡
+𝜂
+𝛽
+ln(1 − 𝐹 𝑡 ) = − 𝑡
+𝜂
+𝛽 Note that:
+−ln(𝑥) = ln 1
+𝑥
+ln 𝑎𝑏 = b ln 𝑎
+Copyright © Cheng Julius Wang All Rights Reserved
+53
+• We can redefine the above function as just a linear line:
+𝒚 = 𝛽𝒙 − 𝛽ln 𝜂
+Weibull Probability Plot – Linearization 
+𝑙𝑛 𝑙𝑛 1
+1 − 𝐹(𝑡) = 𝛽ln(𝑡) − 𝛽ln(𝜂)
+𝒚 = 𝑙𝑛 𝑙𝑛 1
+1 − 𝐹(𝑡) 𝒙 = ln(𝑡)
+Copyright © Cheng Julius Wang All Rights Reserved
+54
+• On the Weibull Probability Paper,  
+• y is the probability of failure. 
+• x is the failure time. 
+• We know the failure time for each test 
+sample (on the x-axis),
+• We will need to know the associated y 
+value for each failure time (on the y axis) 
+to plot. How do we know that?
+Weibull Probability Plot – Linearization 
+y
+x
+Copyright © Cheng Julius Wang All Rights Reserved
+55
+• X value for each point on the Probability 
+Plot is the failure time. For example, if we 
+tested 6 samples of half shaft component, 
+we get the following failure times: 10, 30, 
+50, 60, 80, 100 (hours). These values are 
+the x values.
+• The Y values are the Probability of 
+Failures. They can be calculated using 
+“Median Rank” method.
+How to Calculate Y for Each Point X?
+10
+What is the y 
+value for failure 
+time X at 10？
+y
+x
+Copyright © Cheng Julius Wang All Rights Reserved
+56
+• Failure Time： 10, 30, 50, 60, 80, and 
+100 hour
+• y value is calculated from the probability 
+of failure 𝐹(𝑡), now how do you get 𝐹(𝑡) 
+(this is the y value on the y axis)?
+Thoughts Behind the Median Rank Method
+𝑦 = 𝑙𝑛 𝑙𝑛 1
+1 − 𝐹(𝑇)
+If you test only 1 sample, what is the 
+best guess of Failure Probability at 
+the failure time intuitively?
+What if you test 2 samples?
+What if you test 3 samples?
+What if you test 6 samples?
+10
+10
+10
+10
+30
+30
+30
+50
+50
+Copyright © Cheng Julius Wang All Rights Reserved
+57
+• Due to the randomness of the failure times, we use “Order Statistics” 
+to calculate the probability of failure. The calculation method is 
+called “Median Rank”. 
+• It is called “Median” because the calculated value is the Median of 
+the Probability of Failure. Thus, if you repeatedly test 6 samples, 
+50% of the time, the “probability of failure at Time 10” will be 
+higher than this value, and 50% of the times, it will be less than this 
+value. 
+• A simple way to calculate (approximately) the Median Rank (Benard, 
+1953*) is shown below:  N = Total Number of Samples；i = the rank 
+order of the failure.
+Median Rank
+𝑀𝑅 = 𝑖 − 0.3
+𝑁 + 0.4
+i MR
+1 0.1296
+2 0.3148
+3 0.5
+4 0.6852
+5 0.8704
+𝑀𝑅1 = 1 − 0.3
+5 + 0.4
+= 0.7
+5.4 = 0.1296
+𝑀𝑅5 = 5 − 0.3
+5 + 0.4
+= 4.7
+5.4 = 0.8704
+𝑬𝒙𝒂𝒎𝒑𝒍𝒆: 𝑵 = 𝟓
+* Benard, A and Bos-Levenbach, E. C., “Het uitzetten van waarnemingen op waarschijnlijkdeids-papier” (The Plotting of Observations on Probability Paper), Statististica
+Neerlandica, V olume 7, pages 163-173, 1953. Translated by Ronald Schop, December 28, 2001.
+Copyright © Cheng Julius Wang All Rights Reserved
+58
+ID Failure 
+Time MR
+1 10 0.1094
+2 30 0.2656
+3 50
+4 60
+5 80
+6 100
+𝑀𝑅1 =
+𝑖−0.3
+𝑁+0.4 =
+1−0.3
+6+0.4 =
+0.7
+6.4 = 0.1094
+𝑀𝑅2 =
+𝑖−0.3
+𝑁+0.4 =
+2−0.3
+6+0.4 =
+1.7
+6.4 = 0.2656
+𝑀𝑅3 =
+𝑖−0.3
+𝑁+0.4 =
+3−0.3
+6+0.4 =
+2.7
+6.4 =?
+𝑀𝑅5 =
+𝑖−0.3
+𝑁+0.4 =
+ ? −0.3
+6+0.4 = 6.4 =?
+𝑀𝑅4 =
+𝑖−0.3
+𝑁+0.4 =
+4−0.3
+6+0.4 =
+3.7
+6.4 =?
+𝑀𝑅6 =
+𝑖−0.3
+𝑁+0.4 =
+ ? −0.3
+6+0.4 = 6.4 =?
+Exercise: Median Rank of 6 Samples
+𝑵 = 𝟔
+(10, 10.9%)
+(30, 26.6%)
+(50, ??%)
+(60, ??%)
+(80, ??%)
+(100, ??%)
+Copyright © Cheng Julius Wang All Rights Reserved
+59
+ID Failure 
+Time MR
+1 10 0.1094
+2 30 0.2656
+3 50 0.4219
+4 60 0.5781
+5 80 0.7344
+6 100 0.8906
+𝑀𝑅1 =
+𝑖−0.3
+𝑁+0.4 =
+1−0.3
+6+0.4 =
+0.7
+6.4 = 0.1094
+𝑀𝑅2 =
+𝑖−0.3
+𝑁+0.4 =
+2−0.3
+6+0.4 =
+1.7
+6.4 = 0.2656
+𝑀𝑅3 =
+𝑖−0.3
+𝑁+0.4 =
+3−0.3
+6+0.4 =
+2.7
+6.4 = 0.4219
+𝑀𝑅5 =
+𝑖−0.3
+𝑁+0.4 =
+ 5 −0.3
+6+0.4 =
+4.7
+6.4 = 0.7344
+𝑀𝑅4 =
+𝑖−0.3
+𝑁+0.4 =
+4−0.3
+6+0.4 =
+3.7
+6.4 = 0.5781
+𝑀𝑅6 =
+𝑖−0.3
+𝑁+0.4 =
+ 6 −0.3
+6+0.4 =
+5.7
+6.4 = 0.8906
+Exercise Solution: Median Rank of 6 Samples
+(10, 10.9%)
+(30, 26.6%)
+(50, 42.2%)
+(60, 57.8%)
+(80, 73.4%)
+(100, 89.1%)
+𝑵 = 𝟔
+Copyright © Cheng Julius Wang All Rights Reserved
+60
+• In Excel, we can use the inverse beta distribution to find the median rank value, 
+𝑩𝒆𝒕𝒂. 𝑰𝑵𝑽(𝟎. 𝟓, 𝒊, 𝒏 − 𝒊 + 𝟏).
+• For example, 𝑛 =  5,
+• 𝑖 =  1, 𝐵𝑒𝑡𝑎. 𝐼𝑁𝑉(0.5, 1, 5)  =  0.1295 
+• 𝑖 =  2, 𝐵𝑒𝑡𝑎. 𝐼𝑁𝑉(0.5, 2, 4)  =  0.3138 
+• 𝑖 =  3, 𝐵𝑒𝑡𝑎. 𝐼𝑁𝑉(0.5, 3, 3)  =  0.5 
+• 𝑖 =  4, 𝐵𝑒𝑡𝑎. 𝐼𝑁𝑉(0.5, 4, 2)  =  0.6862 
+• 𝑖 =  5, 𝐵𝑒𝑡𝑎. 𝐼𝑁𝑉(0.5, 5, 1)  =  0.8706
+i MR
+1 0.1296
+2 0.3148
+3 0.5
+4 0.6852
+5 0.8704
+𝑀𝑅 = 𝑖 − 0.3
+𝑁 + 0.4
+Median Rank using Excel “Beta Distribution” Function
+𝑵 = 𝟓
+Copyright © Cheng Julius Wang All Rights Reserved
+61
+• Fundamental Theories
+• Introduction, Statistics, Probability, Reliability Basics
+• Distributions (Binomial, Exponential, Weibull, Normal)
+• Probability Plot: Weibull Plot (median rank)
+• Producer’s Risk (Type I Error)
+• Consumer’s Risk (Type II Error)
+• Testing Hypothesis
+• Reliability Demonstration Tests (RDT) Theory
+• Sample Size Determination Approaches
+• Estimation Approach
+• Method E1: Normal Approximation with Bound Width
+• Method E2: ML Approximate Variance with Bound Ratio
+• Method E3: ML Approximate Variance with Bound Width
+• Risk Control Approach
+• Method R1: Non-Parametric Binomial
+• Method R2: Parametric Binomial
+• Method R3: Exponential Chi-Square
+• Method R4: Weibull Chi-Square
+• Method R5: Repairable System Poisson
+Table of Contents
+• Bayesian Inference
+• Classical vs. Bayesian Statistics
+• Teaser Examples
+• Thomas Bayes
+• Conditional Probability and Bayes Theorem
+• Odds, Bayesian Confidence, and Logit
+• Some Core Principles
+• Prior Information Sources and Quantification
+• Design Change Condition (DCC) Factor
+• Reliability Activities Maturity (RAM) Factor
+• Conjugate Pairs
+• Beta Distribution
+• Method B1: Bayesian Prior Confidence
+• Beta Prior Distribution 
+• Method B2: Bayesian Beta Prior 3-Point
+• Method B3: Bayesian Beta Prior Sub-Systems
+• Gamma Prior Distribution
+• Method B4: Bayesian Gamma Prior 50/95
+• Method B5: Bayesian Gamma Prior BAZE
+Copyright © Cheng Julius Wang All Rights Reserved
+62
+Producers vs. Consumers
+• The “Producer” produce products.
+• The “Consumer” buys products from the Producer.
+• The Consumer can be a client (say, an OEM) to the Producer (say, a supplier).
+• The product is judged “good” (conforming to a defined specification) or “bad” (non-conformance) by the 
+Producer from some defined acceptance test with acceptance criteria.
+• Good products are sold to Consumers.
+• Bad products are discarded by the Producer.
+Copyright © Cheng Julius Wang All Rights Reserved
+63
+Producer’s Risk and Consumer’s Risk in decision-making
+• The Producer may produce GOOD products but fail the acceptance test by chance (sampling error). 
+• This is called the Producer’s Risk.
+• The Producer may produce BAD products but pass the acceptance test by chance (sampling error). As a 
+result, the Consumer may buy a BAD product while believing the product is GOOD. 
+• This is called the Consumer’s risk.
+Copyright © Cheng Julius Wang All Rights Reserved
+64
+What is Hypothesis Testing?
+• A hypothesis test is performed by forming two complementary statements about the 
+value of a population parameter. For example, 
+• Ho: 𝜇 = 3 𝑁𝑚   (called Null Hypothesis) 
+• H1: 𝜇 ≠ 3 𝑁𝑚   (called Alternative Hypothesis) 
+• We then do the testing to collect the data to see which of the two statements is 
+“supported” by the “sample data” (treat this “sample data” as “evidence”) to help 
+decision-making.
+“Extraordinary claims require extraordinary evidence.”
+   - Carl Sagan (1934 – 1996)
+Copyright © Cheng Julius Wang All Rights Reserved
+65
+The difference between Type I error and Type II error
+Ho is TRUE Ho is FALSE
+(H1 is TRUE)
+Accept Ho No error 
+(𝟏 − 𝜶)
+Type II error 
+(𝜷)
+Reject Ho
+(Accept H1)
+Type I error 
+(𝜶)
+No error 
+(𝟏 − 𝜷)
+• Type I error (𝜶)
+• The probability of rejecting the null 
+hypothesis (Ho) when the null hypothesis 
+(Ho) is true.
+• It is also called “significance level” or “size 
+of the test”.
+• Type II error (𝜷)
+• The probability of accepting the null 
+hypothesis (Ho) when the null hypothesis 
+(Ho) is false.
+• (𝟏 − 𝜷) is called “statistical power” or 
+“power of the test” as this is the probability 
+of rejecting the Ho when Ho is false.
+Our Assumptions of Ho 
+and H1 before Testing
+Our Decisions After 
+Testing based on Sample 
+Data/ Evidence
+Copyright © Cheng Julius Wang All Rights Reserved
+66
+Rejecting null hypothesis (Ho) is a strong conclusion!
+• Because the results of hypothesis testing are subject to errors, we cannot “prove” or 
+“disprove”  a statistical hypothesis. We can, however, design a test procedure to control 
+the error probabilities 𝛼 and 𝛽 to suitably small values.
+• With the hypothesis testing, we (as experimenter and/or decision-maker) have full 
+control of the type I error (𝜶). Therefore, rejecting the null hypothesis (Ho) is usually 
+a very strong conclusion that we have substantial evidence to “accept” H1. 
+• But the statistical power (𝟏 − 𝜷) depends on what the H1 value is. H1 typically is set as  
+H1: 𝜇 ≠ 3, hence it is difficult to control type II error (𝜷).
+Copyright © Cheng Julius Wang All Rights Reserved
+67
+A good practice of setting up the alternative hypothesis (H1) as 
+the statement that you want it to happen!
+• Since it is difficult to control type II error (𝜷) without knowing what H1 really is before 
+the testing, a good practice is to make H1 (alternative hypothesis) represent the 
+opportunity of interest or value (that is, the statement that you want it to happen, e.g., 
+H1: 𝜇 > 3 𝑁𝑚). And then make Ho (null hypothesis, e.g.,  Ho: 𝜇 = 3 𝑁𝑚) the 
+complement of H1. After the testing, if the collected data provide substantial evidence to 
+support H1, we can then reject Ho (that is, accept H1) and only commit type I error (𝜶) 
+as we decide to control. 
+• Note: I chose to use “accept” or “reject” a hypothesis. Some textbooks follow strict guidelines of using “can’t 
+reject” a hypothesis, and this sometimes causes confusion and is awkward to apply. I have chosen to violate the 
+rule for convenience reason.
+• Remember this point: Hypothesis testing is more about the alternative hypothesis (H1) 
+than the null hypothesis (Ho) in general practices.
+Copyright © Cheng Julius Wang All Rights Reserved
+68
+P[Type I error] = Producer’s Risk
+P[Type II error] = Consumer’s Risk
+• We can also view Ho as “product meets specification, or product is GOOD” and H1 as “product does not 
+meet specification, or product is BAD”. In this case,
+• Type I error is also called Producer’s Risk.
+• Type II error is also called Consumer’s Risk
+Ho is TRUE
+(Product is GOOD)
+Ho is FALSE
+(Product is BAD)
+Accept Ho No error 
+(𝟏 − 𝜶)
+Type II error (𝜷)
+Calling a BAD 
+product GOOD
+(Consumer’s risk)
+Reject Ho
+Type I error (𝜶)
+Calling a GOOD 
+product BAD
+(Producer’s risk)
+No error 
+(𝟏 − 𝜷)
+• 𝛼 = P [ type I error ] = P [ reject Ho | Ho is 
+true ] = Producer’s Risk
+• 𝛽 = P [ type II error ] = P [ accept Ho | Ho is 
+false ] = Consumer’s Risk
+• Statistical Power (or just Power) = (1 − 𝛽) 
+= P [ reject Ho | Ho is false ]
+Copyright © Cheng Julius Wang All Rights Reserved
+69
+• The “Statistical Power” (or just “Power” = 1 − 𝛽) can be viewed as the “detection 
+power” of a test that can detect the difference between two subjects (for example, old 
+vs. new design, supplier A vs. supplier B, etc.)
+• To detect a small difference between two subjects, large samples from each group is 
+needed typically.
+• If the difference is large, a small sample size may be sufficient.
+Keep the “Statistical Power” High
+• 𝛼 = P [ type I error ] = P [ reject Ho | Ho is true ] = Producer’s Risk
+• 𝛽 = P [ type II error ] = P [ accept Ho | Ho is false ] = Consumer’s Risk
+• Statistical Power (or just Power) = (𝟏 − 𝜷) = P [ reject Ho | Ho is false ]
+Copyright © Cheng Julius Wang All Rights Reserved
+70
+• It is a “bad practice” to “accept Ho” after the testing.
+• This simply means the sample data (evidence) do not support H1.
+• Hence, we CANNOT accept H1. But we CANNOT reject Ho neither. The test is 
+“inconclusive”, or the expected results (what you wish for) is NOT statistically 
+significant.
+Accept Ho is Inconclusive, i.e., your expected results (H1 is true) 
+is NOT supported by the sample data (the evidence)
+• 𝛼 = P [ type I error ] = P [ reject Ho | Ho is true ] = Producer’s Risk
+• 𝛽 = P [ type II error ] = P [ accept Ho | Ho is false ] = Consumer’s Risk
+• Statistical Power (or just Power) = (𝟏 − 𝜷) = P [ reject Ho | Ho is false ]

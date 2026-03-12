@@ -1,0 +1,940 @@
+Copyright © Cheng Julius Wang All Rights Reserved
+Reliability Demonstration Test (RDT) Introduction (1/3)
+71
+• Reliability Demonstration Test (RDT) is concerned with a decision (pass or fail) and the amount of data to 
+collect. It is to decide between two hypotheses (equipment is good vs. equipment is “not so good”), which 
+must be numerically defined. In the testing hypothesis setup, the “equipment is “not so good”” is set up as 
+the minimum acceptable reliability or MTBF (or the maximum failure rate) as H1.
+• The test carries a probabilistic guarantee (the statistical power) that certain risks will not be exceeded. 
+Typically, a contract MTBF (or failure rate, or a reliability% target at a specific time/cycle) is specified.
+• To reduce/control the risk of making a wrong decision from testing:
+• Measurement system must be precise and accurate: Gage R&R for functional/performance measures.
+• Statistical method is used to determine the following while controlling Type I, Type II, or both risks:
+• How many to test
+• How long to test
+ 
+Copyright © Cheng Julius Wang All Rights Reserved
+Reliability Demonstration Test (RDT) Introduction (2/3)
+72
+• The best approach to define how many and how long is for the producer and 
+consumer to jointly arrive at a procedure for which each party feels that the risks 
+incurred are acceptably small. The risks (type I and type II) should be specified by 
+the consumer (or OEM) and producer (or supplier).
+• Internal to a company to apply RDT,
+• The company is the Producer
+• The customer who buys the company’s products is the Consumer.
+• A test procedure should be chosen to minimize the amount of testing required while 
+not exceeding the specified risks.
+Copyright © Cheng Julius Wang All Rights Reserved
+Reliability Demonstration Test (RDT) Introduction (3/3)
+73
+• However, the OEM in general specifies the RDT plan and the supplier needs to fulfill it 
+through the agreed-upon contract. Most often, the RDT by OEM only controls the 
+consumer’s risk (type II error), because OEM prefers not to accept BAD products 
+while thinking the product is good.
+• Due to this general practice (only type II error 𝛽 is used to determine the RDT), the 
+type I error 𝛼 is not controlled. The supplier should estimate if the producer’s risk (type 
+I error, 𝛼) is unreasonably too high. If it is too high, the supplier needs to initiate 
+further discussion with the OEM. Most often the OEM pays the validation test cost via 
+contract and the supplier has less motivation to provide feedback. But the supplier 
+needs to know if it may suffer the risk of rejecting too many good products.  Hence, it 
+is a good practice that both OEM and supplier reach a consensus of 𝛼 and 𝛽. 
+Copyright © Cheng Julius Wang All Rights Reserved
+Reliability Demonstration Test (RDT): Testing Hypothesis
+74
+෍
+𝑖=0
+𝑟
+𝑛
+𝑖 (1 − 𝑅0)𝑖 𝑅0 n−i ≥ 1 − 𝛼
+• Testing Hypothesis:
+• H0: 𝑅 = 𝑅0 (associated with 𝛼)
+• H1: 𝑅 = 𝑅1 (associated with 𝛽), called “minimum acceptable” value.
+Ho is TRUE
+(𝑅 = 𝑅0)
+Ho is FALSE
+(𝑅 = 𝑅1)
+Accept Ho (𝟏 − 𝜶) Type II error (𝜷)
+(Consumer’s risk)
+Reject Ho Type I error (𝜶)
+(Producer’s risk) (𝟏 − 𝜷)
+෍
+𝑖=0
+𝑟
+𝑛
+𝑖 (1 − 𝑅1)𝑖 𝑅1 n−i ≤ 𝛽
+𝑟:  𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑓𝑎𝑖𝑙𝑢𝑟𝑒𝑠 𝑎𝑙𝑙𝑜𝑤𝑒𝑑
+𝑛:  𝑠𝑎𝑚𝑝𝑙𝑒 𝑠𝑖𝑧𝑒
+Copyright © Cheng Julius Wang All Rights Reserved
+How to make sense of the RDT OC Curve
+75
+• Testing Hypothesis:
+• H0: 𝑅 = 𝑅0 (associated with 𝛼)
+• H1: 𝑅 = 𝑅1 (associated with 𝛽)
+Note: 𝑅1 is the “minimum acceptable” value, 
+and 𝑅1 < 𝑅0. 
+𝑅0𝑅1 1.0
+100%
+Probability of 
+Acceptance
+1 − 𝛽
+𝛽
+1 − 𝛼
+𝛼
+OC (Operating Characteristic) Curve
+Ho is TRUE
+(𝑅 = 𝑅0)
+Ho is FALSE
+(𝑅 = 𝑅1)
+Accept Ho (𝟏 − 𝜶) Type II error (𝜷)
+(Consumer’s risk)
+Reject Ho Type I error (𝜶)
+(Producer’s risk) (𝟏 − 𝜷)
+෍
+𝑖=0
+𝑟
+𝑛
+𝑖 (1 − 𝑅0)𝑖 𝑅0 n−i ≥ 1 − 𝛼
+෍
+𝑖=0
+𝑟
+𝑛
+𝑖 (1 − 𝑅1)𝑖 𝑅1 n−i ≤ 𝛽
+Copyright © Cheng Julius Wang All Rights Reserved
+Use OC Curve to read the RDT implications
+76
+• Testing Hypothesis:
+• H0: 𝑅 = 𝑅0 (associated with 𝛼)
+• H1: 𝑅 = 𝑅1 (associated with 𝛽)
+𝑅0𝑅1 1.0
+100%
+Probability of 
+Acceptance
+1 − 𝛽
+𝛽
+1 − 𝛼
+𝛼
+OC (Operating Characteristic) Curve
+• 𝑅0 should represent the highest value of reliability (or MTBF) 
+believed achievable under the state-of-the art and the required 
+reliability activities/effort.
+• 𝑹𝟏 should be the lowest or minimum acceptable value 
+that the consumer is willing to accept from mission success 
+and maintenance/support viewpoints.
+• Equipment with a reliability 𝑅0 (or better) should have a high 
+probability of acceptance. 𝛼 should be small. Or may go out 
+of business by rejecting many good parts. Small 𝛼 requires 
+large sample size.
+• Equipment with a reliability 𝑅1 (or less) should have a high 
+probability of rejection. 𝛽 should be small. Or may accept too 
+many bad parts. Small 𝛽 requires large sample size.
+Ho is TRUE
+(𝑅 = 𝑅0)
+Ho is FALSE
+(𝑅 = 𝑅1)
+Accept Ho (𝟏 − 𝜶) Type II error (𝜷)
+(Consumer’s risk)
+Reject Ho Type I error (𝜶)
+(Producer’s risk) (𝟏 − 𝜷)
+Copyright © Cheng Julius Wang All Rights Reserved
+Example: RDT to demonstrate R90 at C90 (Reliability = 90% 
+at Confidence level = 90%)
+77
+෍
+𝑖=0
+𝑟
+𝑛
+𝑖 (1 − 𝑅1)𝑖 𝑅1 n−i ≤ 𝛽
+𝑅0𝑅1 1.0
+100%
+Probability of 
+Acceptance
+1 − 𝛽
+𝛽
+1 − 𝛼
+𝛼
+OC (Operating Characteristic) Curve
+Ho is TRUE
+(𝑅 = 𝑅0)
+Ho is FALSE
+(𝑅 = 𝑅1)
+Accept Ho (𝟏 − 𝜶) Type II error (𝜷)
+(Consumer’s risk)
+Reject Ho Type I error (𝜶)
+(Producer’s risk) (𝟏 − 𝜷)
+• When 𝑅 < 𝑅1, we will have high  probability (> 1 − 𝛽) of 
+rejecting it. Hence, 𝑅1 can be used as the minimum 
+acceptable reliability in RDT from the consumer (customer) 
+perspective.
+• A simple RDT plan is to have zero failure (𝑟 = 0) with a 
+specified 𝛽 = 5% (or Confidence = 1 − 𝛽 = 95%; 𝛽 =
+(1 − 𝐶)), then,
+෍
+𝑖=0
+0
+𝑛
+0 (1 − 𝑅1)0 𝑅1 n−0 = 𝑅1 n ≤ 𝛽 = (1 − 𝐶)
+𝑅1 n = (1 − 𝐶)
+𝑛 = ln(1 − 𝐶)
+ln(𝑅1)
+• Example: Assume 𝑅1 = 0.90, and 
+𝛽 = 10% (or Confidence = 1 − 𝛽 =
+90%), then, 𝑛 = ln(1−𝐶)
+ln(𝑅1) = ln(1−0.9)
+ln(0.9) =
+22. Note that we ONLY considers 𝜷. 
+How about 𝑅0 and α from producer’s 
+perspective?
+Copyright © Cheng Julius Wang All Rights Reserved
+Considering 𝜶 𝒂𝒏𝒅 𝑹𝟎 in RDT
+78
+𝑅0𝑅1 1.0
+100%
+Probability of 
+Acceptance
+1 − 𝛽
+𝛽
+1 − 𝛼
+𝛼
+OC (Operating Characteristic) Curve
+Ho is TRUE
+(𝑅 = 𝑅0)
+Ho is FALSE
+(𝑅 = 𝑅1)
+Accept Ho (𝟏 − 𝜶) Type II error (𝜷)
+(Consumer’s risk)
+Reject Ho Type I error (𝜶)
+(Producer’s risk) (𝟏 − 𝜷)
+෍
+𝑖=0
+0
+𝑛
+0 (1 − 𝑅0)0 𝑅0 n−0 = 𝑅0 n ≥ 1 − 𝛼
+𝑅0 = (1 − 𝛼)
+1
+𝑛= (1 − 0.1)
+1
+22= 0.9952
+෍
+𝑖=0
+𝑟
+𝑛
+𝑖 (1 − 𝑅0)𝑖 𝑅0 n−i ≥ 1 − 𝛼
+• Assume 𝜶 = 𝜷 = 𝟏𝟎%, then,
+• 𝑅1 = 0.90, 𝛽 = 10% (or Confidence = 1 − 𝛽 =
+90%, then, 𝑛 =
+ln(1−𝐶)
+ln(𝑅1) =
+ln(1−0.9)
+ln(0.9) = 22.
+What does this mean?
+Use the 
+equation 
+concerning 
+𝛼 and 𝑅0
+Copyright © Cheng Julius Wang All Rights Reserved
+Real World Issues of Reliability Demonstration Test (RDT)!
+79
+𝑅0𝑅1 1.0
+100%
+Probability of 
+Acceptance
+1 − 𝛽
+𝛽
+1 − 𝛼
+𝛼
+OC (Operating Characteristic) Curve
+• Classical RDT using (𝑅0, 𝑅1) is very difficult to execute when 𝑅1 is increasing and/or 
+(𝛼, 𝛽) is decreasing.
+• This demands such a large sample size that business resources will never be able to meet 
+to demonstrate a reliability value with the associated risks.
+Copyright © Cheng Julius Wang All Rights Reserved
+80
+• Fundamental Theories
+• Introduction, Statistics, Probability, Reliability Basics
+• Distributions (Binomial, Exponential, Weibull, Normal)
+• Probability Plot: Weibull Plot (median rank)
+• Producer’s Risk (Type I Error)
+• Consumer’s Risk (Type II Error)
+• Testing Hypothesis
+• Reliability Demonstration Tests (RDT) Theory
+• Sample Size Determination Approaches
+• Estimation Approach
+• Method E1: Normal Approximation with Bound Width
+• Method E2: ML Approximate Variance with Bound Ratio
+• Method E3: ML Approximate Variance with Bound Width
+• Risk Control Approach
+• Method R1: Non-Parametric Binomial
+• Method R2: Parametric Binomial
+• Method R3: Exponential Chi-Square
+• Method R4: Weibull Chi-Square
+• Method R5: Repairable System Poisson
+Table of Contents
+• Bayesian Inference
+• Classical vs. Bayesian Statistics
+• Teaser Examples
+• Thomas Bayes
+• Conditional Probability and Bayes Theorem
+• Odds, Bayesian Confidence, and Logit
+• Some Core Principles
+• Prior Information Sources and Quantification
+• Design Change Condition (DCC) Factor
+• Reliability Activities Maturity (RAM) Factor
+• Conjugate Pairs
+• Beta Distribution
+• Method B1: Bayesian Prior Confidence
+• Beta Prior Distribution 
+• Method B2: Bayesian Beta Prior 3-Point
+• Method B3: Bayesian Beta Prior Sub-Systems
+• Gamma Prior Distribution
+• Method B4: Bayesian Gamma Prior 50/95
+• Method B5: Bayesian Gamma Prior BAZE
+Copyright © Cheng Julius Wang All Rights Reserved
+• Two general statistical inference methods in determining the required sample size:
+• The Estimation Approach
+• The goal is to determine the effect of sample size on the precision of the estimated reliability 
+(confidence intervals).
+• Sample size is determined based on the desired confidence interval width.
+• The Risk Control Approach
+• The goal is to control the Type I and/or Type II errors.
+• Type I error (producer’s risk): Reject a product that meets the reliability requirement
+• Type II error (consumer’s risk): Accept a product that does not meet the requirement
+Sample Size Determination Approaches
+81
+Copyright © Cheng Julius Wang All Rights Reserved
+82
+The Estimation Approach: An Introductory Example
+• A room is full of black and white balloons. How would you estimate the percent of 
+black balloons? (call it “𝑝”)
+www.facebook.com/pg
+/Sazao19/posts/
+Copyright © Cheng Julius Wang All Rights Reserved
+83
+• 8 Blacks
+• 12 Whites
+• 40% (=
+8
+20 = 𝑝) are black, 60% are white. 
+If We Take a Sample of 20 Ballons
+
+Copyright © Cheng Julius Wang All Rights Reserved
+84
+• 11 Blacks
+• 9 Whites
+• 55% (=
+11
+20 = 𝑝) are black, 45% are white.
+What if We Take Another Sample of 20 Ballons?
+
+Copyright © Cheng Julius Wang All Rights Reserved
+85
+• 11/20 Black
+• 9/20 White 
+• 𝟓𝟓% = 𝑝 are Black, 45% are White
+Which One Should be Used?
+𝒑 = 𝟒𝟎% 𝒐𝒓 𝟓𝟓%？
+• If black balloon represents a sample failing the reliability test, and white balloon means a success, 
+then what is the probability that a sample will fail the test?
+• 8/20 Black
+• 12/20 White
+• 𝟒𝟎% = 𝑝 are Black (, 60% are White
+Copyright © Cheng Julius Wang All Rights Reserved
+86
+• If we repeat the above process many times, we will obtain many estimated 𝑝 values
+• 𝑝1,  𝑝2,  𝑝3,  𝑝4, … … ,  𝑝𝑖 （𝑖 =  𝑛)
+• If 90% of the above 𝑝 values (total 𝑛) are within 35% and 70%, then this interval is called the 90% 
+confidence interval for the 𝑝 parameter.  This addresses the precision question.
+• Note that there is a 10% chance that the estimated value is outside of those limits.
+Interval Estimation (Confidence Interval)
+P=35% P=70%
+P
+Copyright © Cheng Julius Wang All Rights Reserved
+87
+Now Let’s Take a Sample of 200 Ballons
+• 40 Blacks
+• 160 Whites
+• 20% (=
+40
+200 = 𝑝) are black, 80% are white. 
+
+Copyright © Cheng Julius Wang All Rights Reserved
+88
+Let’s Take Another Sample of 200Ballons
+• 30 Blacks
+• 170 Whites
+• 15% (=
+30
+200 = 𝑝) are black, 85% are white. 
+
+Copyright © Cheng Julius Wang All Rights Reserved
+89
+• If we repeat the above process many times, we will obtain many estimated 𝑝 values
+• 𝑝1,  𝑝2,  𝑝3,  𝑝4, … … ,  𝑝𝑖 （𝑖 =  𝑛)
+• If 90% of the above 𝑝 values (total 𝑛) are within 15% and 25%, then this interval is called the 90% 
+confidence interval for the 𝑝 estimation.  This addresses the precision question for Point Estimator.
+• Note that there is a 10% chance that the estimated value is outside of those limits.
+Interval Estimation (Confidence Interval)
+P=15% P=25%
+Large sample sizes 
+produce 
+narrower/tighter  
+confidence interval.
+P
+Copyright © Cheng Julius Wang All Rights Reserved
+The Estimation Approach: Setting Requirements
+• Since larger sample sizes produce narrower confidence intervals, the test sample size can be determined based on the 
+required confidence interval width.
+• This requirement can be set in terms of:
+• Bound width:
+• 𝐵 = 𝑥𝑈,𝐶𝐿 − 𝑥𝐿,𝐶𝐿, or distance from upper or lower bound to the estimated value 𝑥
+• Margin of Error (MOE) is defined as “confidence interval half-width”, 0.5 × 𝐵 = 0.5 × (𝑥𝑈,𝐶𝐿 − 𝑥𝐿,𝐶𝐿)
+• Bound Ratio:
+• 𝐵 =
+𝑥𝑈,𝐶𝐿
+𝑥𝐿,𝐶𝐿
+,  or the ratio of upper or lower bound to the estimated value x
+• 𝑥𝑈,𝐶𝐿 and 𝑥𝐿,𝐶𝐿 are the upper and lower bounds of a statistic (e.g., reliability) at a confidence level of CL in RDT.
+• If the statistic is assumed to follow a normal distribution, then the bound width is used.
+• If the statistic is assumed to follow a lognormal distribution, then the bound ratio is used.
+90
+Copyright © Cheng Julius Wang All Rights Reserved
+Method E1: Normal Approximation with Bound Width
+• Recall the back and white ballon example.
+• Let black balloon represents a sample failing the reliability test, and white balloon means a success. Assume the failure 
+percentage, 𝑝 (picking a black ballon) is normally distributed when 𝑛 (sample size) is large* and 𝑝 is small*.
+• The upper and lower confidence bounds of 𝑝 are:
+𝑝𝑈,𝐶𝐿 = Ƹ𝑝+ 𝑘𝜎𝑥 = Ƹ𝑝 + 𝑘𝑎/2 × Ƹ𝑝 1 − Ƹ𝑝
+𝑛
+𝑝𝑈,𝐶𝐿 = Ƹ𝑝− 𝑘𝜎𝑥 = Ƹ𝑝 − 𝑘𝑎/2 × Ƹ𝑝 1 − Ƹ𝑝
+𝑛
+𝑘𝑎/2 is the Τ1 + 𝐶𝐿 2 percentile of the standard normal distribution. Ƹ𝑝 is the sample estimate of 𝑝.
+• The bound width is:
+𝐵 = 2𝑘𝑎/2 × Ƹ𝑝 1 − Ƹ𝑝
+𝑛
+* The normal approximation is based on the DeMoivre-Laplace Limit Theorem (1738). It is in general good when 𝑛𝑝≥ 10 𝑎𝑛𝑑 𝑛(1 − 𝑝) ≥ 10.
+91
+Copyright © Cheng Julius Wang All Rights Reserved
+92
+• The black and white ballons example with 𝑛 = 20 showed that we could estimate Ƹ𝑝 =
+40%+55%
+2 = 0.475.
+• Note the bound width (this is confidence interval half-width) is:
+𝐵 = 2𝑘𝑎/2 × Ƹ𝑝 1 − Ƹ𝑝
+𝑛
+• Given a confidence level of 90% for 2-sided CI, 𝑘𝑎/2 is 1.645 (use Excel function: norm.s.inv(0.95)=1.645).
+• Assume the required bound width is 𝐵 = 8% (if this is what we prefer as the CI), the necessary sample size is:
+𝑛 = 4𝑘𝑎
+2 × Ƹ𝑝 1 − Ƹ𝑝
+𝐵2 = 4 1.645 2 × 0.475 1 − 0.475
+0.082 = 421.7 ~422
+• 422 ballons are needed so that the bound width of the estimated percentage of black ballon (or failure probability) is 
+8% at 90% confidence level.
+Method E1: Normal Approximation with Bound Width
+Copyright © Cheng Julius Wang All Rights Reserved
+93
+• Example E1.1: 
+• Reliability target = 1 − 𝑝 = 0.9
+• Confidence = 𝐶 =  0.9
+• 𝐵 = 5%.
+• 𝑛 =?
+Method E1: Normal Approximation with Bound Width
+- Example
+Copyright © Cheng Julius Wang All Rights Reserved
+94
+• Example E1.1 (cont’d): 
+• Given a 1-sided confidence level of 90%, 𝒌𝑪 is 1.282.
+• The planned 𝑝 = 1 − 𝑅 = 1 − 0.9 = 0.1.
+𝑛 = 4𝑘𝑎
+2 × 𝑝 1 − 𝑝
+𝐵2 = 4 × 𝟏. 𝟐𝟖𝟐 2× 0.1 × 0.9
+0.052 = 𝟐𝟑𝟔. 𝟕 ~𝟐𝟑𝟕
+• Do you typically have resources to test 237 parts?
+Example E1.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+95
+• In reliability testing, the metrics of interest with a confidence interval requirement usually are:
+• Reliability at a given time: e.g.,  95% 𝑎𝑡 𝑡 = 1000 ℎ𝑜𝑢𝑟𝑠.
+• BX life (specific life-time by which X% fails): e.g., B5 = 1000 hours, B10 = 2000 hours (or 1 million 
+cycles).
+• Mean life: MTTF
+• Reliability metrics usually are log-normally distributed with large sample size. Therefore, the Bound Ratio 
+is preferred. 
+• ML approximate variance stands for maximum likelihood approximate variance estimates.
+Method E2: ML Approximate Variance with Bound Ratio
+Copyright © Cheng Julius Wang All Rights Reserved
+96
+• Use Weibull distribution as an example.
+• The reliability function is:
+𝑅 𝑡 = 𝑒
+− 𝑡
+𝜂
+𝛽
+• The upper and lower bounds on ln(𝑟𝑒𝑙𝑖𝑎𝑏𝑖𝑙𝑖𝑡𝑦) are:
+ln 𝑅𝑈,𝐶𝐿 = 𝑙𝑛 ෠𝑅 + 𝑘𝑎/2 𝑉𝑎𝑟 𝑙𝑛 ෠𝑅
+ln 𝑅𝐿,𝐶𝐿 = 𝑙𝑛 ෠𝑅 − 𝑘𝑎/2 𝑉𝑎𝑟 𝑙𝑛 ෠𝑅
+෠𝑅 is the estimated reliability and 𝑉𝑎𝑟 𝑙𝑛 ෠𝑅  is the variance of the log transformation of the estimated 
+reliability.
+Method E2: ML Approximate Variance with Bound Ratio
+Copyright © Cheng Julius Wang All Rights Reserved
+97
+• The bound ratio is:
+𝐵 = 𝑅𝑈,𝐶𝐿
+𝑅𝐿,𝐶𝐿
+= 𝑒𝑥𝑝 2𝑘𝑎/2 𝑉𝑎𝑟 𝑙𝑛 ෠𝑅
+• 𝑉𝑎𝑟 𝑙𝑛 ෠𝑅  is a function of the sample size and can be obtained from the Fisher information matrix.
+• Given the required bound ratio and the assumed distribution parameters, we can calculate the required 
+sample size.
+• This involves more advanced development of Fisher information matrix. Using existing reliability 
+software packages is recommended. For example, ReliaSoft Weibull++.
+Method E2: ML Approximate Variance with Bound Ratio
+Copyright © Cheng Julius Wang All Rights Reserved
+98
+• Using ReliaSoft Weibull++, we could apply a simulation process to design a reliability test as follows:
+• Determine an assumed failure distribution and its parameters.
+• Generate a random number between 0 and 1.
+• In the reliability equation of the chosen distribution set the generated number as the reliability and 
+solve for the time to failure.
+• Repeat the above steps multiple times in order to obtain a desired sample size of times to failure.
+• Use this sample to fit a failure distribution.
+• Repeat this process for multiple simulation runs to obtain multiple sets of estimated distribution 
+parameters.
+• Rank those parameters in an ascending order and obtain the upper and lower bounds at a given 
+confidence level of the parameters and any reliability metrics of interest.
+Method E2: ML Approximate Variance with Bound Ratio
+- Simulation
+Copyright © Cheng Julius Wang All Rights Reserved
+99
+• Example E2.1:
+• From historical information, the engineer knows that component’s life follows a Weibull 
+distribution with:
+• beta=2.3  
+• eta=1,000 hours
+• With a requirement of annual reliability test by the customer, the engineer wants to determine the 
+sample size needed so that 
+• The Bound Ratio of the estimated reliability at 400 hours is less than 1.2 at a confidence 
+level of 90%.
+Method E2: ML Approximate Variance with Bound Ratio
+- Example
+Copyright © Cheng Julius Wang All Rights Reserved
+• Example E2.1 (cont’d):
+• Using a simulation tool like Weibull++ SimuMatic, the engineer can perform simulation and 
+calculate the bound ratio at a 90% confidence for different sample sizes.
+• As it can be seen the desired bound ratio is achieved for a sample size of at least 25 units.
+Sample Size Upper Bound Lower Bound Bound Ratio
+5 0.9981 0.7058 1.4143
+10 0.9850 0.7521 1.3096
+15 0.9723 0.7718 1.2599
+20 0.9628 0.7932 1.2139
+25 0.9570 0.7984 1.1985
+30 0.9464 0.8052 1.1754
+35 0.9433 0.8158 1.1563
+40 0.9415 0.8261 1.1397
+Example E2.1 Solution
+100
+Copyright © Cheng Julius Wang All Rights Reserved
+101
+• The method is using the ML Approximate 
+Variance method with the Bound Width.
+• Using B10 life for example. B10 life is the 10th 
+percentile of the time-to-failure distribution.
+• Reliability at B10 life = 90%.
+Method E3: ML Approximate Variance with Bound Width
+0
+• Tail proportion = 10%.
+• Probability of failure by 
+“B10 life” is 10%.
+B10 Life = 10th  
+percentile
+Time to Failure
+• Proportion > “B10 
+Life”= 90%. 
+• Reliability at “B10 life” 
+is 90%.
+Copyright © Cheng Julius Wang All Rights Reserved
+102
+• Define “Precision” as the distance from the lower 
+confidence bound to the estimated value (point 
+estimate). This can be done for Bx life or reliability.
+• Note that “Precision” is also defined as 50% of the 
+total confidence interval width, or the confidence 
+interval half-width, or the Margin of Error (MOE).
+• For reliability or percentile (like B10 life), we are 
+only interested in the lower confidence bound, that 
+is, how low it can go before hitting the target of, 
+e.g., reliability of 90% or B10 life = 400 hours.
+• Commercial software like Minitab is using this method. 
+Method E3: ML Approximate Variance with Bound Width - Precision
+USL
+ത𝑋
+LSL T
+Tail proportion = 
+10%
+Point estimate of 
+the 10th percentile
+Lower 90% 
+Confidence Bound 
+for the 10th 
+percentile point 
+estimate
+LSL
+B10 = 10th  
+percentile
+Enlarged 
+View
+(
+Precision
+Copyright © Cheng Julius Wang All Rights Reserved
+103
+• Example E3.1:
+• From historical information, the engineer knows that component’s life follows a Weibull distribution 
+with:
+• beta=2.3  
+• eta=1,000 hours
+• With a requirement of annual reliability test by the customer, the engineer wants to determine the 
+sample size needed so that 
+• The distance from the lower bound to the estimated reliability at 400 hours is less than 0.08 (or 
+8%) at a confidence level of 90%. Therefore, the Precision is 8%.
+Method E3: ML Approximate Variance with Bound Width
+- Example
+Copyright © Cheng Julius Wang All Rights Reserved
+• Example E3.1 (cont’d):
+• Using a tool like Minitab, the engineer can calculate the sample size based on the distance 
+from the bound to the estimate. (precision requirement in terms of bound width)
+• As it can be seen the desired bound width of 8% is achieved for a sample 
+size of at least 25 units.
+• This is a powerful method. You need Minitab to do it.
+104
+Example E3.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+105
+• Fundamental Theories
+• Introduction, Statistics, Probability, Reliability Basics
+• Distributions (Binomial, Exponential, Weibull, Normal)
+• Probability Plot: Weibull Plot (median rank)
+• Producer’s Risk (Type I Error)
+• Consumer’s Risk (Type II Error)
+• Testing Hypothesis
+• Reliability Demonstration Tests (RDT) Theory
+• Sample Size Determination Approaches
+• Estimation Approach
+• Method E1: Normal Approximation with Bound Width
+• Method E2: ML Approximate Variance with Bound Ratio
+• Method E3: ML Approximate Variance with Bound Width
+• Risk Control Approach
+• Method R1: Non-Parametric Binomial
+• Method R2: Parametric Binomial
+• Method R3: Exponential Chi-Square
+• Method R4: Weibull Chi-Square
+• Method R5: Repairable System Poisson
+Table of Contents
+• Bayesian Inference
+• Classical vs. Bayesian Statistics
+• Teaser Examples
+• Thomas Bayes
+• Conditional Probability and Bayes Theorem
+• Odds, Bayesian Confidence, and Logit
+• Some Core Principles
+• Prior Information Sources and Quantification
+• Design Change Condition (DCC) Factor
+• Reliability Activities Maturity (RAM) Factor
+• Conjugate Pairs
+• Beta Distribution
+• Method B1: Bayesian Prior Confidence
+• Beta Prior Distribution 
+• Method B2: Bayesian Beta Prior 3-Point
+• Method B3: Bayesian Beta Prior Sub-Systems
+• Gamma Prior Distribution
+• Method B4: Bayesian Gamma Prior 50/95
+• Method B5: Bayesian Gamma Prior BAZE
+Copyright © Cheng Julius Wang All Rights Reserved
+106
+The Risk Control Approach
+• This approach applies the Type I error and Type II error 
+we have discussed.  It is typically used to design a 
+Reliability Demonstration Test (RDT).
+• Most often for zero-failure test plan.
+• Objective is to demonstrate reliability, NOT 
+estimating reliability level or finding reliability-
+related issues.
+•  In demonstration tests, there are two types of risks:
+• Type I error α (Producer’s Risk).
+• The probability that although the product 
+meets the reliability requirements it does not 
+pass the test.
+• Type II error β (Consumer’s Risk).
+• The probability that although the product 
+does not meet the reliability requirements it 
+passes the test.
+Ho is TRUE
+(Product is GOOD)
+Ho is FALSE
+(Product is BAD)
+Accept Ho No error 
+(𝟏 − 𝜶)
+Type II error (𝜷)
+Calling a BAD 
+product GOOD
+(Consumer’s risk)
+Reject Ho
+Type I error (𝜶)
+Calling a GOOD 
+product BAD
+(Producer’s risk)
+No error 
+(𝟏 − 𝜷)
+Ho: The product meets the Reliability requirement
+H1: The product does not meet the Reliability requirement
+Copyright © Cheng Julius Wang All Rights Reserved
+107
+The Risk Control Approach: OC Curve
+• Large sample size will decrease both 𝛼 𝑎𝑛𝑑 𝛽 risks.
+• Sample size can be determined by controlling the Type I, Type II, or both risks. 
+𝑅0𝑅1 1.0
+100%
+Probability of 
+Acceptance
+1 − 𝛽
+𝛽
+1 − 𝛼
+𝛼
+OC (Operating Characteristic) Curve
+Copyright © Cheng Julius Wang All Rights Reserved
+108
+• Example R1.1: Detecting a Change
+• The voltage reading of a small device is a critical reliability index.
+• If it is higher than 12 volts, the device has failed.
+• It follows a normal distribution with mean of 10 volts and standard deviation of 1 volt from 
+historical data.
+• Based on that the reliability of the device is estimated as 𝑅 = 𝑃𝑟 𝑥 < 12 = 0.977.
+• The manufacturing SPC data indicate that the mean of the voltage values tends to shift downward 
+over time resulting in a decrease in the device’s reliability.
+• Samples are taken every day to monitor the manufactured devices. If one of the samples fails, the 
+manufacturing line is recalibrated.
+• Given that the reliability of the devices must be higher than 95%, how many samples should be taken 
+so that there is a 90% chance of detecting a problem.
+Method R1: Non-Parametric Binomial
+- Example of Detecting a Change
+Copyright © Cheng Julius Wang All Rights Reserved
+109
+• Example R1.1: Detecting a Change (cont’d)
+• If the reliability of the devices has decreased to 95%, the probability of detecting this decrease 
+given a sample size of n is:
+𝑃 = 1 − 𝑅𝐿
+𝑛 = 1 − 0.95𝑛
+• We require a 90% chance to detect an issue, so:
+0.9 = 1 − 0.95𝑛 ⟹ 𝑛 = 45
+• Therefore, if 45 samples are taken, then:
+• There is a 90% chance of detecting a change or
+• There is a 10% chance of not detecting a change.
+• This corresponds to a Type II error since it is the probability of not detecting a change 
+when one has occurred.
+Example R1.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+110
+• Example R1.1: Detecting a Change (cont’d)
+• Given the true reliability is 0.977, the the Type I error, α, can also be calculated as:
+𝛼 = 1 − 𝑅𝑛 = 1 − 0.97745 = 0.649
+• Therefore, there is a 64.9% chance of the devices failing the test although they meet the reliability 
+requirement.  This type I error is too large, and a lot of false alarms will be generated.
+• A better sampling plan (sample size and allowed number of failures) is needed. 
+Example R1.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+Method R1: Non-Parametric Binomial
+111
+• Still using Method R1, under the RDT theory, 
+the Testing Hypothesis is:
+• H0: 𝑅 = 𝑅0 (associated with 𝛼)
+• H1: 𝑅 = 𝑅1 (associated with 𝛽)
+Ho is TRUE
+(𝑅 = 𝑅0)
+Ho is FALSE
+(𝑅 = 𝑅1)
+Accept Ho (𝟏 − 𝜶) Type II error (𝜷)
+(Consumer’s risk)
+Reject Ho Type I error (𝜶)
+(Producer’s risk) (𝟏 − 𝜷)
+෍
+𝑖=0
+𝑟
+𝑛
+𝑖 (1 − 𝑅0)𝑖 𝑅0 n−i ≥ 1 − 𝛼
+෍
+𝑖=0
+𝑟
+𝑛
+𝑖 (1 − 𝑅1)𝑖 𝑅1 n−i ≤ 𝛽 = 1 − 𝐶
+Copyright © Cheng Julius Wang All Rights Reserved
+Method R1: Non-Parametric Binomial Theory
+112
+• In general, a Non-Parametric Binomial RDT plan is:
+1 − 𝐶 = ෍
+𝑖=0
+𝑟
+𝑛
+𝑖 (1 − 𝑅)𝑖 𝑅 n−i
+• 𝐶 is the confidence level = 1 − 𝛽 
+• 𝑟 is the number of failures
+• 𝑛 is the sample size
+• 𝑅 is the demonstrated reliability target
+Copyright © Cheng Julius Wang All Rights Reserved
+113
+• In the Non-Parametric Binomial equation, time is not a factor.
+• No need to know the distribution of the parameter (failure time)
+• The decision is made based on passing of the “defined length” of the reliability test
+• The Non-Parametric Binomial method is used:
+• For one-shot devices where time is not a factor.
+• For cases when the test time is the same as the time at which we require the demonstrated reliability.
+• Caution: Type I error (𝜶) and Reliability associated with 𝜶 are not defined.
+• Typically used by the Customer (or OEM). 
+• The burden is on the Producer’s side (or supplier).
+Method R1: Non-Parametric Binomial
+Copyright © Cheng Julius Wang All Rights Reserved
+114
+• Example R1.2:
+• A reliability engineer wants to design a zero-failure demonstration test.
+• The target reliability is 80% at 100 hours.
+• The required confidence level is 90%.
+• The available test time is 100 hours.
+• What is the required sample size? 
+Method R1: Non-Parametric Binomial
+- Example
+Copyright © Cheng Julius Wang All Rights Reserved
+115
+• Example R1.2 (cont’d):
+• Since this is a zero-failure plan, the equation becomes  1 − 𝐶 = 𝑅𝑛.
+• 𝑛 =
+ln(1−𝐶)
+ln(𝑅) =
+ln(1−0.9)
+ln(0.8) = 11.
+• Using R4All software, the results = 11.
+Example R1.2 Solution
+
+Copyright © Cheng Julius Wang All Rights Reserved
+116
+• Example R1.2 (cont’d)
+• If 1 out the 11 samples failed during the test, the demonstrated reliability will be less than the 
+requirement.  In this case, we can write the following:
+1 − 𝐶 = ෍
+𝑖=0
+𝑟
+𝑛
+𝑖 1 − 𝑅 𝑖 𝑅 n−i  ⇒ 1 − 0.9 = ෍
+𝑖=0
+1
+11
+𝑖 1 − 𝑅 𝑖 𝑅 11−i = 𝑅 11 + 11 1 − 𝑅 𝑅 11−1
+• Using Excel “Goal Seek” or simply 
+do trial and error, we obtain 𝑅 =
+0.6899.
+• R4All software has 𝑅 = 0.6898.
+Example R1.2 Solution
+
+Copyright © Cheng Julius Wang All Rights Reserved
+117
+• The following figure shows how the demonstrated reliability changes with different numbers of failures 
+and for different sample sizes.
+Method R1: Non-Parametric Binomial – Sample Size Effect
+Copyright © Cheng Julius Wang All Rights Reserved
+118
+• As noted before, the “Non-Parametric Binomial” equation does not consider time. 
+• Test duration is the same as the time for the required reliability
+• Or the product is for one time use
+• However, in some cases,
+• The available test time is less than the time for the reliability requirement.
+• Or the sample size from the Non-Parametric Binomial test design is too large
+• In order to introduce time to the Binomial equation, some assumptions need to be made 
+regarding the failure distribution of the product.
+Method R2: Parametric Binomial
+Copyright © Cheng Julius Wang All Rights Reserved
+119
+• Example R2.1:
+• We need to design a reliability demonstration test for a new component to demonstrate a reliability of 
+80% at 2,000 hours with a 90% confidence.
+• The available test time is 1,500 hours.
+• The maximum allowed failures in the test is 1.
+• It is assumed that the component follows a Weibull distribution with 𝜷 of 2.
+• What is the required sample size?
+Method R2: Parametric Binomial
+- Example
+Copyright © Cheng Julius Wang All Rights Reserved
+120
+• Example R2.1 (cont’d)
+• Step 1: Determine the Weibull scale parameter:
+𝜂 =
+𝑡
+−𝑙𝑛 𝑅𝑡
+Τ1 𝛽 =
+2000
+−𝑙𝑛 0.8
+0.5 = 4233.87 
+• Step 2: Calculate the reliability at the available test time:
+𝑅 𝑇 = 𝑒
+− 𝑇
+𝜂
+𝛽
+= 𝑒
+− 1500
+4233.87
+2
+= 0.882
+• Step 3: Use the calculated reliability to determine the required sample size:
+1 − 𝐶 = ෍
+𝑖=0
+𝑟
+𝑛
+𝑖 1 − 𝑅 𝑖𝑅𝑛−𝑖 ⟹ ෍
+𝑖=0
+1
+𝑛
+𝑖 1 − 0.882 𝑖0.882𝑛−𝑖 = 0.1
+Example R2.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+121
+• Example R2.1 (cont’d):
+• The following figure shows the calculated sample size of 32.
+Example R2.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+122
+• Binomial Distribution and Beta Distribution Relationship:
+• It is well known that the Binomial probability has a close relationship to the CDF of a Beta 
+Distribution:
+1 − ෍
+𝑖=0
+𝑟
+𝑛
+𝑖 1 − 𝑅 𝑖𝑅𝑛−𝑖 = 𝐶 = 𝐼𝐶 𝑟 + 1, 𝑛− 𝑟
+Method R2: Parametric Binomial – Binomial and Beta
+𝐼𝐶(𝑎, 𝑏) is called the “Regularized Incomplete Beta Function”.
+• Excel function: 𝐼𝐶 𝑟 + 1, 𝑛− 𝑟  =  𝑩𝒆𝒕𝒂. 𝑫𝑰𝑺𝑻 𝟏 − 𝑹, 𝒓 + 𝟏, 𝒏 − 𝒓, 𝑻𝑹𝑼𝑬 = 𝑪
+Copyright © Cheng Julius Wang All Rights Reserved
+123
+• Re-visit Example R2.1:
+• We need to design a reliability demonstration test for a new component to demonstrate a reliability of 
+80% at 2,000 hours with a 90% confidence.
+• The available test time is 1,500 hours.
+• The maximum allowed failures in the test is 1.
+• It is assumed that the component follows a Weibull distribution with 𝜷 of 2.
+• What is the required sample size?
+Example R2.1 Re-Visit
+Copyright © Cheng Julius Wang All Rights Reserved
+124
+• Re-visit Example R2.1 (cont’d)
+• We now use the Binomial and Beta Distribution Relationship to solve for sample size:
+• 𝑟 = 1
+• 𝑅 = 0.882 (go back for 4 slides for estimation)
+• 𝐶 = 0.9
+• Use the Excel function: 𝑩𝒆𝒕𝒂. 𝑫𝑰𝑺𝑻 𝟏 − 𝑹, 𝒓 + 𝟏, 𝒏 − 𝒓, 𝑻𝑹𝑼𝑬 = 𝑪.
+• 𝐵𝑒𝑡𝑎. 𝐷𝐼𝑆𝑇 0.118, 2, 𝑛− 1, 𝑇𝑅𝑈𝐸 = 0.9.
+• Use Excel “Goal Seek” or just do trial and error, we obtain 𝑛 = 31.44 ~ 32.
+1 − ෍
+𝑖=0
+1
+𝑛
+𝑖 1 − 0.882 𝑖0.882𝑛−𝑖 = 0.91 − ෍
+𝑖=0
+𝑟
+𝑛
+𝑖 1 − 𝑅 𝑖𝑅𝑛−𝑖 = 𝐶 = 𝐼𝐶 𝑓 + 1, 𝑛− 𝑓  ⇒
+1 − 1 − 0.882 00.882𝑛 + 𝑛 1 − 0.882 10.882𝑛−1 = 𝟏 − 𝟎. 𝟖𝟖𝟐𝒏 − 𝒏(𝟎. 𝟏𝟏𝟖)𝟎. 𝟖𝟖𝟐𝒏−𝟏 = 𝟎. 𝟗
+Example R2.1 (Re-Visit) Solution

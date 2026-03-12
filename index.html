@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>課程知識萃取與自評助手 - 貝氏統計</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- App Background & Ambient Glow -->
+    <div class="ambient-background">
+        <div class="glow blob-1"></div>
+        <div class="glow blob-2"></div>
+        <div class="glow blob-3"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="url(#paint0_linear)" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M2 17L12 22L22 17" stroke="url(#paint1_linear)" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 12L12 17L22 12" stroke="url(#paint2_linear)" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <defs>
+                        <linearGradient id="paint0_linear" x1="2" y1="7" x2="22" y2="7" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#8B5CF6" />
+                            <stop offset="1" stop-color="#3B82F6" />
+                        </linearGradient>
+                        <linearGradient id="paint1_linear" x1="2" y1="19.5" x2="22" y2="19.5"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#8B5CF6" />
+                            <stop offset="1" stop-color="#3B82F6" />
+                        </linearGradient>
+                        <linearGradient id="paint2_linear" x1="2" y1="14.5" x2="22" y2="14.5"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#8B5CF6" />
+                            <stop offset="1" stop-color="#3B82F6" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="logo-text">Knowledge<span class="highlight">Extractor</span></span>
+            </div>
+            <div class="progress-container hidden" id="quiz-progress-nav">
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress-fill"></div>
+                </div>
+                <span class="progress-text">0 / 5</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="container">
+
+        <!-- VIEW 0: Home (Lesson Selection) -->
+        <div id="view-home" class="view active-view">
+            <header class="hero">
+                <h1 class="hero-title">課程知識萃取<br /><span class="gradient-text">與自評助手</span></h1>
+                <h2 class="course-subtitle">Sample Size Determination of Reliability Tests</h2>
+                <p class="hero-subtitle">請選擇您要複習的課堂內容，快速消化核心知識並進行自我檢測。</p>
+            </header>
+
+            <div class="lesson-grid" id="lesson-grid-container">
+                <!-- Injected by JS -->
+            </div>
+        </div>
+
+        <!-- VIEW 1: Summary Canvas -->
+        <div id="view-canvas" class="view inactive-view">
+
+            <header class="hero">
+                <div class="badge" id="canvas-lesson-badge">Lecture Analysis Complete</div>
+                <h1 class="hero-title" id="canvas-lesson-title">課程精華摘要<br /><span class="gradient-text">貝氏統計與推論</span>
+                </h1>
+                <p class="hero-subtitle" id="canvas-lesson-subtitle">快速消化講義與錄音逐字稿，萃取核心知識。</p>
+            </header>
+
+            <section class="canvas-section">
+                <!-- 💡 核心觀念畫布 -->
+                <div class="section-header">
+                    <div class="icon-wrapper primary"><span class="icon">💡</span></div>
+                    <h2>核心觀念畫布</h2>
+                </div>
+                <div class="grid-cards" id="core-concepts-container">
+                    <!-- Injected by JS -->
+                </div>
+
+                <!-- 🛠️ 實務案例拆解 -->
+                <div class="section-header">
+                    <div class="icon-wrapper secondary"><span class="icon">🛠️</span></div>
+                    <h2>實務案例拆解</h2>
+                </div>
+                <div class="quotes-container" id="practical-examples-container">
+                    <!-- Injected by JS -->
+                </div>
+
+                <!-- ⚠️ 老師特別叮嚀 -->
+                <div class="section-header">
+                    <div class="icon-wrapper warning"><span class="icon">⚠️</span></div>
+                    <h2>老師特別叮嚀</h2>
+                </div>
+                <div class="warnings-grid" id="teacher-warnings-container">
+                    <!-- Injected by JS -->
+                </div>
+            </section>
+
+            <!-- 🏁 自我檢測入口 -->
+            <div class="cta-section">
+                <div class="blur-card cta-card">
+                    <h3>準備好挑戰了嗎？</h3>
+                    <p>根據上述精華摘要與講義嚴格出題，共 5 題情境測驗。</p>
+                    <button id="start-quiz-btn" class="btn-primary pulse-anim">
+                        <span class="btn-icon">🏁</span> 進入自我檢測
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: Quiz Application -->
+        <div id="view-quiz" class="view inactive-view">
+
+            <div class="quiz-header">
+                <button id="back-to-home-btn" class="btn-icon-only" aria-label="返回首頁">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    <span>返回首頁</span>
+                </button>
+                <button id="back-to-canvas-btn" class="btn-icon-only" aria-label="返回摘要">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>返回畫布</span>
+                </button>
+                <h2 class="quiz-title">情境自我檢測</h2>
+            </div>
+
+            <div class="quiz-container blur-card">
+
+                <div class="question-header">
+                    <span class="question-number" id="q-number">Question 1</span>
+                    <span class="score-badge" id="current-score">得點: 0</span>
+                </div>
+
+                <div class="question-body">
+                    <h3 id="question-text">載入題目中...</h3>
+                </div>
+
+                <div class="options-container" id="options-container">
+                    <!-- Options injected by JS -->
+                </div>
+
+                <!-- Feedback Area (Hidden by default) -->
+                <div id="feedback-area" class="feedback-area hidden">
+                    <div class="feedback-header" id="feedback-header">
+                        <!-- '正確！' 或 '錯誤！' -->
+                    </div>
+                    <div class="explanation-box">
+                        <h4>講師解析與講義來源</h4>
+                        <p id="explanation-text"></p>
+                    </div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="next-question-btn" class="btn-primary full-width hidden">下一題</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 3: Quiz Results -->
+        <div id="view-result" class="view inactive-view">
+            <div class="result-container blur-card">
+                <div class="result-icon pulse-anim">🏆</div>
+                <h2 class="result-title">測驗完成！</h2>
+                <div class="score-display">
+                    <span class="score-number" id="final-score">5</span>
+                    <span class="score-total">/ 5</span>
+                </div>
+                <p class="result-message" id="result-message">太棒了！你完美掌握了講義與錄音的所有觀念。</p>
+
+                <div class="result-actions">
+                    <button id="restart-quiz-btn" class="btn-secondary">再測一次</button>
+                    <button id="return-home-btn" class="btn-primary">返回精華畫布</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- App Logic -->
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>

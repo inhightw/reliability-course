@@ -1,0 +1,490 @@
+Copyright © Cheng Julius Wang All Rights Reserved
+122
+• Binomial Distribution and Beta Distribution Relationship:
+• It is well known that the Binomial probability has a close relationship to the CDF of a Beta 
+Distribution:
+1 − ෍
+𝑖=0
+𝑟
+𝑛
+𝑖 1 − 𝑅 𝑖𝑅𝑛−𝑖 = 𝐶 = 𝐼𝐶 𝑟 + 1, 𝑛− 𝑟
+Method R2: Parametric Binomial – Binomial and Beta
+𝐼𝐶(𝑎, 𝑏) is called the “Regularized Incomplete Beta Function”.
+• Excel function: 𝐼𝐶 𝑟 + 1, 𝑛− 𝑟  =  𝑩𝒆𝒕𝒂. 𝑫𝑰𝑺𝑻 𝟏 − 𝑹, 𝒓 + 𝟏, 𝒏 − 𝒓, 𝑻𝑹𝑼𝑬 = 𝑪
+Copyright © Cheng Julius Wang All Rights Reserved
+123
+• Re-visit Example R2.1:
+• We need to design a reliability demonstration test for a new component to demonstrate a reliability of 
+80% at 2,000 hours with a 90% confidence.
+• The available test time is 1,500 hours.
+• The maximum allowed failures in the test is 1.
+• It is assumed that the component follows a Weibull distribution with 𝜷 of 2.
+• What is the required sample size?
+Example R2.1 Re-Visit
+Copyright © Cheng Julius Wang All Rights Reserved
+124
+• Re-visit Example R2.1 (cont’d)
+• We now use the Binomial and Beta Distribution Relationship to solve for sample size:
+• 𝑟 = 1
+• 𝑅 = 0.882 (go back for 4 slides for estimation)
+• 𝐶 = 0.9
+• Use the Excel function: 𝑩𝒆𝒕𝒂. 𝑫𝑰𝑺𝑻 𝟏 − 𝑹, 𝒓 + 𝟏, 𝒏 − 𝒓, 𝑻𝑹𝑼𝑬 = 𝑪.
+• 𝐵𝑒𝑡𝑎. 𝐷𝐼𝑆𝑇 0.118, 2, 𝑛− 1, 𝑇𝑅𝑈𝐸 = 0.9.
+• Use Excel “Goal Seek” or just do trial and error, we obtain 𝑛 = 31.44 ~ 32.
+1 − ෍
+𝑖=0
+1
+𝑛
+𝑖 1 − 0.882 𝑖0.882𝑛−𝑖 = 0.91 − ෍
+𝑖=0
+𝑟
+𝑛
+𝑖 1 − 𝑅 𝑖𝑅𝑛−𝑖 = 𝐶 = 𝐼𝐶 𝑓 + 1, 𝑛− 𝑓  ⇒
+1 − 1 − 0.882 00.882𝑛 + 𝑛 1 − 0.882 10.882𝑛−1 = 𝟏 − 𝟎. 𝟖𝟖𝟐𝒏 − 𝒏(𝟎. 𝟏𝟏𝟖)𝟎. 𝟖𝟖𝟐𝒏−𝟏 = 𝟎. 𝟗
+Example R2.1 (Re-Visit) Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+125
+• The following plot shows the required sample size for different test times and allowed numbers of failures:
+Method R2: Parametric Binomial – Effect of Number of Allowed 
+Failures
+Copyright © Cheng Julius Wang All Rights Reserved
+126
+• Example R2.2:
+• We need to design a reliability demonstration test (use the 85C/85%RH test) for a new electronic 
+control module (ECU) to demonstrate a reliability of 90% at 1,000 hours with an 80% confidence.
+• We have 6 ECUs available.
+• The maximum allowed number of failures of the test is zero.
+• From historical data of a similar ECU in the same market, we estimated that a Weibull distribution  
+𝜷 of 2.8 is appropriate for a specific electrochemical corrosion issue.
+• What is the required test time of each ECU?
+Method R2: Parametric Binomial
+- Example
+Copyright © Cheng Julius Wang All Rights Reserved
+127
+• Solution to Example R2.2
+• Step 1: Determine the Weibull scale parameter:
+𝜂 =
+𝑡
+−𝑙𝑛 𝑅𝑡
+Τ1 𝛽 =
+1000
+−𝑙𝑛 0.9
+1/2.8 = 2233.80 
+• Step 2: Calculate the reliability at the required test time T:
+𝑅 𝑇 = 𝑒
+− 𝑇
+𝜂
+𝛽
+= 𝑒
+− 𝑇
+2233.80
+2.8
+• Step 3: Use the Binomial and Beta relationship and apply Excel Goal Seek
+• Excel function: 𝐵𝑒𝑡𝑎. 𝐷𝐼𝑆𝑇 1 − 𝑅(𝑇), 𝑟 + 1, 𝑛− 𝑟, 𝑇𝑅𝑈𝐸 = 𝐶.
+• 𝐵𝑒𝑡𝑎. 𝐷𝐼𝑆𝑇 1 − 𝑅 𝑇 , 0 + 1, 6 − 0, 𝑇𝑅𝑈𝐸 = 0.8
+• Use Excel Goal Seek, we obtain 𝑇 = 1396.1 ℎ𝑜𝑢𝑟𝑠.
+Example R2.2 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+128
+• Exercise R2.1:
+• We need to design a reliability demonstration test (use the 85C/85%RH test) for a new electronic 
+control module (ECU) to demonstrate a reliability of 90% at 1,000 hours with an 80% confidence.
+• We have 6 ECUs available for testing.
+• We have only budgeted maximum 1800 hours (2.5 months) for testing.
+• From historical data of a similar ECU in the same market, we estimated that a Weibull distribution  
+𝜷 of 2.8 is appropriate for a specific electrochemical corrosion issue.
+• What is the maximum allowed number of failures?
+Method R2: Parametric Binomial
+- Exercise
+Copyright © Cheng Julius Wang All Rights Reserved
+129
+• Solution to Exercise R2.1
+• Step 1: Determine the Weibull scale parameter:
+𝜂 =
+𝑡
+−𝑙𝑛 𝑅𝑡
+Τ1 𝛽 =
+1000
+−𝑙𝑛 0.9
+1/2.8 = 2233.80 
+• Step 2: Calculate the reliability at the required test time T (max 1800 hours):
+𝑅 𝑇 = 𝑒
+− 𝑇
+𝜂
+𝛽
+= 𝑒
+− 1800
+2233.80
+2.8
+= 0.579
+• Step 3: Use the Binomial and Beta relationship and apply Excel Goal Seek
+• Excel function: 𝐵𝑒𝑡𝑎. 𝐷𝐼𝑆𝑇 1 − 𝑅(𝑇), 𝑟 + 1, 𝑛− 𝑟, 𝑇𝑅𝑈𝐸 = 𝐶
+• 𝐵𝑒𝑡𝑎. 𝐷𝐼𝑆𝑇 1 − 0.579, 𝑟 + 1, 6 − 𝑟, 𝑇𝑅𝑈𝐸 = 0.8.
+• Use Goal Seek or just do trial and error, we obtain  𝑟 = 0.51 ~ 0 𝑓𝑎𝑖𝑙𝑢𝑟𝑒.
+Exercise R2.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+130
+• Fundamental Theories
+• Introduction, Statistics, Probability, Reliability Basics
+• Distributions (Binomial, Exponential, Weibull, Normal)
+• Probability Plot: Weibull Plot (median rank)
+• Producer’s Risk (Type I Error)
+• Consumer’s Risk (Type II Error)
+• Testing Hypothesis
+• Reliability Demonstration Tests (RDT) Theory
+• Sample Size Determination Approaches
+• Estimation Approach
+• Method E1: Normal Approximation with Bound Width
+• Method E2: ML Approximate Variance with Bound Ratio
+• Method E3: ML Approximate Variance with Bound Width
+• Risk Control Approach
+• Method R1: Non-Parametric Binomial
+• Method R2: Parametric Binomial
+• Method R3: Exponential Chi-Square
+• Method R4: Weibull Chi-Square
+• Method R5: Repairable System Poisson
+Table of Contents
+• Bayesian Inference
+• Classical vs. Bayesian Statistics
+• Teaser Examples
+• Thomas Bayes
+• Conditional Probability and Bayes Theorem
+• Odds, Bayesian Confidence, and Logit
+• Some Core Principles
+• Prior Information Sources and Quantification
+• Design Change Condition (DCC) Factor
+• Reliability Activities Maturity (RAM) Factor
+• Conjugate Pairs
+• Beta Distribution
+• Method B1: Bayesian Prior Confidence
+• Beta Prior Distribution 
+• Method B2: Bayesian Beta Prior 3-Point
+• Method B3: Bayesian Beta Prior Sub-Systems
+• Gamma Prior Distribution
+• Method B4: Bayesian Gamma Prior 50/95
+• Method B5: Bayesian Gamma Prior BAZE
+Copyright © Cheng Julius Wang All Rights Reserved
+131
+• The following Chi-Square method can be used for the case of the exponential distribution:
+𝜒𝐶,2(𝑟+1)
+2 = 2𝑛𝑇
+𝑀𝑇𝑇𝐹
+• 𝜒𝐶,2(𝑟+1)
+2  is the 𝐶𝑡ℎ percentile of a Chi-Square distribution with 2(𝑟 + 1) degrees of freedom.
+• 𝑟 is the number of failures.
+• 𝑛 is the sample size.
+• T is the test duration of each unit.
+• MTTF is the mean time to failure.
+Method R3: Exponential Chi-Square
+Copyright © Cheng Julius Wang All Rights Reserved
+132
+• Example R3.1:
+• We want to design a test to demonstrate:
+• 85% reliability at 500 hours with 90% confidence.
+• Up to 2 failures are allowed in the test.
+• The assumed distribution is exponential.
+• The available test duration is 300 hours.
+• What is the required sample size?
+Method R3: Exponential Chi-Square
+- Example
+Copyright © Cheng Julius Wang All Rights Reserved
+133
+• Example R3.1 (cont’d):
+• First, we need to convert the required reliability to an MTTF metric using 𝑅 𝑡 = 𝑒− 𝑡
+𝑀𝑇𝑇𝐹:
+𝑀𝑇𝑇𝐹= − 𝑡
+𝑙𝑛 𝑅 = − 500
+𝑙𝑛 0.85 = 3076.56 ℎ𝑜𝑢𝑟𝑠
+• The required sample size is:
+𝑛 =
+𝑀𝑇𝑇𝐹× 𝜒𝐶,2(𝑟+1)
+2
+2𝑇 = 3076.56 × 10.6446
+600 = 54.58 ~ 55
+Example R3.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+134
+• Example R3.1 (cont’d):
+• The total accumulated test time based on the available test time and required sample size is:
+• 𝑇𝑎 = 𝑛× 𝑇 = 54.58 × 300 = 16374.5 ℎ𝑜𝑢𝑟𝑠
+Example R3.1 Solution
+
+Copyright © Cheng Julius Wang All Rights Reserved
+135
+• Exercise R3.1:
+• We want to design a test to demonstrate a specific system:
+• An 𝑀𝑇𝑇𝐹= 400 hours.
+• Confidence level = 95%.
+• Total test time available = 200 hour.
+• No failure is allowed,  𝑟 = 0.
+• What is the required number of sample size?
+Exercise R3.1
+Copyright © Cheng Julius Wang All Rights Reserved
+136
+• Solution to Exercise R3.1:
+• The required sample size is:
+𝑛 =
+𝑀𝑇𝑇𝐹× 𝜒𝐶,2(𝑟+1)
+2
+2𝑇 = 400 × 𝜒0.95,2
+2
+2 × 200 = 400 × 5.99146
+2 × 200 = 5.99 ~ 6.
+Exercise R3.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+137
+• Exercise R3.2:
+• We want to design a test to demonstrate a specific system:
+• An 𝑀𝑇𝑇𝐹= 400 hours.
+• Confidence level = 95%.
+• 6 systems are available for testing
+• No failure is allowed, 𝑟 = 0.
+• What is the required test time of each system?
+Exercise R3.2
+Copyright © Cheng Julius Wang All Rights Reserved
+138
+• Solution to Exercise R3.2:
+• The required sample size is:
+𝑇 =
+𝑀𝑇𝑇𝐹× 𝜒𝐶,2(𝑟+1)
+2
+2𝑛 = 400 × 𝜒0.95,2
+2
+2 × 6 = 400 × 5.99146
+2 × 6 = 199.7 ~ 200 ℎ𝑜𝑢𝑟𝑠.
+Exercise R3.2 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+139
+• When an exponential distribution is used in the Parametric Binomial equation, the results will be similar to 
+the Chi-square method.
+• For 0 failures the results will be identical.
+• For 1 or more failures, depending on how the total testing time is calculated, the results could be different. 
+• Binomial method usually assumes the failed units are not replaced by new units for continuing the test. 
+• Chi-square method uses the total testing time. It usually assumes a failed unit is replaced by a new one, 
+and the testing time continues accumulating.   
+Chi-Square vs. Binomial
+Copyright © Cheng Julius Wang All Rights Reserved
+140
+• This is an extension of the Exponential Chi-Square method.
+• The Exponential Chi-Square method assumes that the time to failure follows an Exponential distribution. 
+• It can be improved to handle the Weibull distribution.
+𝑅𝐿(𝑡) = 𝑒𝑥𝑝 −
+(𝜒𝐶,2(𝑟+1))
+2 )
+2 σ𝑖=1
+𝑛 𝑡𝑖
+𝑡
+𝛽
+Method R4: Weibull Chi-Square
+• 𝑅𝐿(𝑡) is the lower confidence limit of reliability at time 𝑡.
+• β value is assumed known.
+• t is the time of interest; normally it is the bogey, design life or the demonstration target.
+• ti is the stop time for sample 𝑖 (could be a failure time or a suspension/censored time of sample i)
+• 𝑖 = 1, 2, … , 𝑛.
+Copyright © Cheng Julius Wang All Rights Reserved
+• Example R4.1
+• We need to design a reliability demonstration test for a new component to demonstrate a 
+reliability of 90% at 2,000 hours with a confidence of  80%.
+• The planned test time is 1,500 hours for each sample.
+• No failure is allowed.
+• It is assumed that the component follows a Weibull distribution with 𝛽 of 2.
+• What is the required sample size?
+Example R4.1
+141
+Copyright © Cheng Julius Wang All Rights Reserved
+142
+• Example R4.1 (cont’d): 
+• Mathematically, we have:
+𝑅𝐿(𝑡) = 𝑒𝑥𝑝 −
+(𝜒𝐶,2(𝑟+1))
+2 )
+2 σ𝑖=1
+𝑛 𝑡𝑖
+𝑡
+𝛽
+𝑅𝐿(2000) = 0.9 = 𝑒𝑥𝑝 −
+(𝜒0.8,2(0+1))
+2 )
+2 σ𝑖=1
+𝑛 1500
+2000
+2 = 𝑒𝑥𝑝 −
+3.21888
+2×𝑛× 1500
+2000
+2
+𝑛 = −3.21888
+2 × ln(0.9) × 1500
+2000
+2 = 27.1 ~ 28.
+Example R4.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+• Example R4.1 (cont’d):
+• Using an on-line Reliability Analysis Tool Reliability4All, we obtain sample size of 28.
+143
+Example R4.1 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+• Example R4.2:
+• Continuing with Example R4.1. Unfortunately, one failure occurred at 1,200 hours. All other 
+samples survived to 1,500 hours.
+• What is the demonstrated reliability at 2000 hours with a new confidence level of 90%?
+144
+Example R4.2
+Copyright © Cheng Julius Wang All Rights Reserved
+• Example R4.2 (cont’d):
+• The demonstrated reliability at 2000 hours at confidence level of 90% can be calculated as follows:
+𝑅𝐿(2000) == 𝑒𝑥𝑝 −
+(𝜒0.9,2(1+1))
+2 )
+2 1200
+2000
+2
++27× 1500
+2000
+2 = 𝑒𝑥𝑝 −
+7.77944
+2 1200
+2000
+2
++27× 1500
+2000
+2 = 77.87%
+145
+Example R4.2 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+• Example R4.3:
+• Continuing with Example R4.2. 
+• Due to timing constraints, management is willing to lower the reliability target to about 80%*. For the 
+other 27 samples that are still working, how many more test hours are needed  to demonstrate this 
+lower reliability of 80%?
+146
+Example R4.3
+* This practice should have communicated with the consumer/customer/client for consensus.
+Copyright © Cheng Julius Wang All Rights Reserved
+• Example R4.3 (cont’d):
+• Using the following equation to solve for the additional time needed “𝑑𝑡”. We obtain 𝑑𝑡 = 100 hours.
+• For each of the 27 samples, each one needs to test to total of 1600 hours.
+𝑅𝐿(2000) =
+𝑒𝑥𝑝 −
+(𝜒0.9,2(1+1))
+2 )
+2 1200
+2000
+2
++27× 1500+𝑑𝑡
+2000
+2 = 
+𝑒𝑥𝑝 −
+7.77944
+2 1200
+2000
+2
++27× 1500+𝑑𝑡
+2000
+2 = 80.21%
+147
+Example R4.3 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+• Example R4.4:
+• Continuing with Example R4.3, if each sample can only be tested for 1,500 hours (as planned), how 
+many more samples are needed to demonstrate the lowered reliability of 80% (mathematically)?
+148
+Example R4.4
+Copyright © Cheng Julius Wang All Rights Reserved
+• Example R4.4 (cont’d):
+• Using the following equation to solve for the additional sample size “𝑚”. We obtain 𝑚 = 4 when 
+𝑅𝐿(2000) = ~ 0.8037. These four additional samples are needed to test to 1,500 hours each.
+𝑅𝐿(2000) =
+𝑒𝑥𝑝 −
+(𝜒0.9,2(1+1))
+2 )
+2 1200
+2000
+2
++(27+𝑚)× 1500
+2000
+2 = 
+𝑒𝑥𝑝 −
+7.77944
+2 1200
+2000
+2
++(27+𝑚)× 1500
+2000
+2 = 80.37%
+149
+Example R4.4 Solution
+Copyright © Cheng Julius Wang All Rights Reserved
+150
+• Difference between non-repairable and repairable system (or called equipment)
+• Non-repairable equipment lives only once, also called component
+• Repairable equipment can still live after repair/replacement of failed component(s)
+Method R5: Repairable System Poisson
+
+Copyright © Cheng Julius Wang All Rights Reserved
+Method R5: Repairable System Poisson 
+- Differences in Statistical Methods
+151
+Failure
+Suspension/ 
+Censor
+Item 1
+Item 2
+Item 3
+Item 4
+Item 5 𝑡2𝑡1 𝑡5𝑡40 𝑡3
+Non-Repairable System
+End of 
+Test
+Failure
+System 1
+System 2
+Suspension/ 
+Censor
+𝑡3𝑡2𝑡1
+𝑥2 𝑥3
+𝑡 = 0
+𝑥1
+𝑡𝑖 = 𝐹𝑎𝑖𝑙𝑢𝑟𝑒 𝑇𝑖𝑚𝑒 (𝑔𝑙𝑜𝑏𝑎𝑙)
+𝑥𝑖 = 𝐼𝑛𝑡𝑒𝑟𝑎𝑟𝑟𝑖𝑣𝑎𝑙 𝑇𝑖𝑚𝑒
+Repairable System
+End of 
+Test
+• The statistical approaches that apply to non-repairable system or repairable system are different.
+• For non-repairable system, probability/statistics typically requires IID (independent and identically distributed) 
+assumption of failure data so we could use classical distributions (like normal, exponential, Weibull, etc.) to model 
+the failure behavior. Under IID, the occurrence order of failure times has no significance.
+• For repairable system, since the time between successive failures may not be IID anymore and the occurrence 
+order of repairs is significant in affecting the future “interarrival times”, we need to use stochastic counting process 
+to model the failure behavior.
+Copyright © Cheng Julius Wang All Rights Reserved
+Non-Homogeneous Poisson Process (NHPP)
+152
+• The Crow-AMSAA* Power Law Model is one of the mostly applied model 
+in modeling repairable system reliability.
+• Assume 𝑁(𝑡) is the number of failures by time 𝑡 which is a random variable:
+• The Failure Intensity function is 𝜆 t :
+• The expected number of failure by time t is 𝐸 𝑁 𝑡 :
+• The Probability of obtaining “𝑛” failures by time t is 𝑃 𝑁 𝑡 = 𝑛 :
+• The Probability of obtaining “𝑛” failures between time 𝑎 𝑎𝑛𝑑 𝑏 is 
+𝑃 𝑁 𝑏 − 𝑁 𝑎 = 𝑛 :
+• The Mission Reliability at time “𝑡” of going another time interval “𝑑” 
+without failure is 𝑅 𝑡 + 𝑑 𝑡 :
+* AMSAA: US Army Material Systems Analysis Activity
+𝑀 𝑡 = 𝐸 𝑁 𝑡 = න
+𝑜
+t
+𝜆 𝑠 𝑑𝑠 = 𝜆𝑡𝛽
+𝑃 𝑁 𝑏 − 𝑁 𝑎 = 𝑛 =
+׬a
+𝑏
+𝜆 𝑡 𝑑𝑡
+𝑛
+𝑒−׬𝑎
+𝑏 𝜆 𝑡 𝑑𝑡
+𝑛!
+𝑃 𝑁(𝑡) = n = 𝜆𝑡𝛽 𝑛
+𝑛! 𝑒−𝜆𝑡𝛽
+, 𝑛 = 0,1,2, …
+𝑅 𝑡 + 𝑑 𝑡 = 𝑒− 𝜆(𝑡+𝑑)𝛽−𝜆(𝑡)𝛽
+𝜆 t = 𝜆𝛽𝑡 𝛽−1

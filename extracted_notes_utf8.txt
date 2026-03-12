@@ -1,0 +1,669 @@
+
+--- Page 1 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+158
+• Fundamental Theories
+• Introduction, Statistics, Probability, Reliability Basics
+• Distributions (Binomial, Exponential, Weibull, Normal)
+• Probability Plot: Weibull Plot (median rank)
+• Producer’s Risk (Type I Error)
+• Consumer’s Risk (Type II Error)
+• Testing Hypothesis
+• Reliability Demonstration Tests (RDT) Theory
+• Sample Size Determination Approaches
+• Estimation Approach
+• Method E1: Normal Approximation with Bound Width
+• Method E2: ML Approximate Variance with Bound Ratio
+• Method E3: ML Approximate Variance with Bound Width
+• Risk Control Approach
+• Method R1: Non-Parametric Binomial
+• Method R2: Parametric Binomial
+• Method R3: Exponential Chi-Square
+• Method R4: Weibull Chi-Square
+• Method R5: Repairable System Poisson
+Table of Contents
+• Bayesian Inference
+• Classical vs. Bayesian Statistics
+• Teaser Examples
+• Thomas Bayes
+• Conditional Probability and Bayes Theorem
+• Odds, Bayesian Confidence, and Logit
+• Some Core Principles
+• Prior Information Sources and Quantification
+• Design Change Condition (DCC) Factor
+• Reliability Activities Maturity (RAM) Factor
+• Conjugate Pairs
+• Beta Distribution
+• Method B1: Bayesian Prior Confidence
+• Beta Prior Distribution 
+• Method B2: Bayesian Beta Prior 3-Point
+• Method B3: Bayesian Beta Prior Sub-Systems
+• Gamma Prior Distribution
+• Method B4: Bayesian Gamma Prior 50/95
+• Method B5: Bayesian Gamma Prior BAZE
+--- Page 2 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Randomness in physical sciences
+• What do we mean when we refer to a phenomenon as “random”?
+• The outcome of the phenomenon (event, or experiment) cannot be predicted with certainty.
+• What are the reasons that we cannot seem to predict the outcomes of the following event or 
+experiment?
+• Tossing a fair coin and predict the next one is head or tail.
+• Weight distribution of the coin? lifting angle? lifting force? air resistance?
+• Perform a test to predict the tensile strength of a coupon of steel ASTM A358.
+• Measurement system (for example, Instron) precision and accuracy? material 
+microstructure difference? material  homogeneity?
+• Perform a test to measure the dimension of a width of ten similar parts with specification of 
+10 ± 0.1 𝑚𝑚.
+• Caliper or CMM precision and accuracy? location of placing the part using a caliper? manufacturing 
+process of the part?
+159
+--- Page 3 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Randomness in other sciences
+• In social science, “Hawthorne effect”*:
+• People tend to behave differently simply because they are aware of the fact that they are participating 
+in an experiment and they are being observed.
+• Once a subject knows he/she is being experimented upon, there is an inherent uncertainty associated 
+with the outcome of the experiment: Should the observed result be attributed to the treatment or to 
+the Hawthorne effect?
+• In biomedical science, “Placebo effect”**:
+• A “placebo” is a substance having no medical value, but the human subject is told this drug will 
+improve his/her state of health.
+• The placebo operates psychologically on the individual, whose health then does improve in many 
+instances. It is difficult to explain how the psyche induces psychological change. But once the subject 
+knows he/she is being experimented upon, a certain inherent randomness in the outcome arises.  
+160
+* Roethlisberger, F., and Dickson, W., (1939; republished in 1961). Management and the Worker: An account of a research program conducted by the Western Electric 
+Hawthorne Works, Chicago. Harvard University Press, Boston, MA.
+** Guijarro, C., (2015), “A history of the Placebo”, Neurosciences and History, vol. 3, no. 2, pp. 68-80.
+--- Page 4 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+We must deal not only with randomness, but also with the 
+“degrees of randomness”
+• With a “degree of randomness” specified, we as human beings can measure, compare, 
+and make necessary decisions to deal with the issue at hand.
+• But how should the different “degrees of randomness” that usually occur with random 
+phenomenon be specified or quantified?
+• Conventional wisdom on this questions suggests we use the notion of “probability”.
+• What is “probability”?
+161
+--- Page 5 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Kolmogorov’s Axiom System of Probability
+• Using the coin tossing “Experiment”, the possible “Outcomes” (also called sample space) are heads or 
+tails, and tossing a coin to obtain a head, for example, is an “Event”. The “experiment” can be repeated 
+many times.
+• The probability of an event A, is expressed as 𝑃 𝐴 . It is a non-negative real valued function of events 
+satisfying certain axioms that permit algebraic manipulation of probability.
+• Axiom 1: 𝑃(𝐴) ≥ 0.
+• Axiom 2: 𝑃(𝑎𝑙𝑙 𝑝𝑜𝑠𝑠𝑖𝑏𝑙𝑒 𝑒𝑣𝑒𝑛𝑡𝑠) = 1.
+• Axiom 3: Countable additivity – If 𝐴1, 𝐴2, … 𝐴𝑛, … are mutually exclusive and exhaustive, then 
+𝑃ڂ𝑖=1
+∞ 𝐴𝑖 = σ𝑖=1
+∞ 𝑃(𝐴𝑖) .
+• Probability functions satisfying this axiom system are called mathematical probabilities.
+• This is typically said to be the axioms of classical (frequentist or frequency-based) statistics.
+162
+* Kolmogorov, Andrey (1950) [1933] Foundations of the theory of probability, Chelsea Publishing Company, New York
+--- Page 6 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Kolmogorov’s Axiom System of Probability
+163* Kolmogorov, Andrey (1950) [1933] Foundations of the theory of probability, Chelsea Publishing Company, New York
+Andrey Kolmogorov
+Russian mathematician
+1903-1987
+--- Page 7 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Subjective Probability (1/2)
+• Suppose in our coin tossing experiment, the coin falls on “heads” on each of 10 
+consecutive tosses. If we don’t have prior knowledge of how the coin was fabricated 
+and don’t know if the coin has fallen in the past, what are we to believe about the bias 
+of the coin? We could consider two possibilities:
+• A. The coin is strongly biased towards falling “heads”.
+• B. The events of falling “heads” or “tails” are equiprobable (i.e., having equal 
+probability), but we just happen to have observed a possible, but unusual run of 
+“heads”.
+• Should we believe A or B?
+164
+--- Page 8 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Subjective Probability (2/2)
+• If we change the 10 consecutive tosses to “all heads out of 20 consecutive tosses”, 
+which one do you believe now?
+• A. The coin is strongly biased towards falling “heads”
+• B. The events of falling “heads” or “tails” are equiprobable (i.e., having equal 
+probability), but we just happen to have observed a possible, but unusual run of 
+“heads”.
+• The accumulating empirical evidence affects our degree of belief about how the coin 
+is likely to fall on the next, as yet unobserved, toss. This degree of belief is usually 
+called “personal probability” or “subjective probability”.
+165
+Note: 1/210= 1 in 1024. 1/220 = 1 in 1,048,576.
+--- Page 9 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Ramsey’s Subjective Probability
+• The first formal mention of “personal probability” was by Frank Ramsey (1926)*. 
+• He argued that probability is not related to a disembodied body of knowledge but is 
+related to the knowledge that each individual possesses alone. Thus, personal beliefs 
+that are formulated by this individual knowledge govern probabilities, leading to the 
+notions of subjective probability and Bayesian probability. 
+• Consequently, subjective probabilities can be inferred by observing actions that 
+reflect individuals' personal beliefs. Ramsey argued that the degree of probability 
+that an individual attaches to a particular outcome can be measured by finding what 
+odds the individual would accept when betting on that outcome.
+166
+* Ramsey, F. P. (1926) "Truth and Probability", in Ramsey, 1931, The Foundations of Mathematics and other Logical Essays, Ch. VII, p.156-198, 
+edited by R.B. Braithwaite, London: Kegan, Paul, Trench, Trubner & Co., New York: Harcourt, Brace and Company. 
+Frank Ramsey
+British philosopher, 
+mathematician, 
+and economist
+1903-1930
+--- Page 10 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Renyi’s Axiom System of Probability
+• Renyi (1970)* developed a countable additivity axiom system based on conditioning. He assumed that 
+all probabilities must be conditioned on certain prior historical information or evidence. A decision-
+making (or judgement-formulating) behavior conditioned on prior information seems closer to real-
+world behavior than an unconditional system. 
+• Axiom 1: For any events A, B, we have 𝑃(𝐴|𝐵) ≥ 0 and 𝑃 𝐵 𝐵 = 1. 
+• Axiom 2: For disjoint events, 𝐴1, 𝐴2, … and some event B, we have 𝑃ڂ𝑖=1
+∞ 𝐴𝑖|𝐵 = σ𝑖=1
+∞ 𝑃(𝐴𝑖|𝐵) .
+• Axiom 3: For every event collection (A, B, C), 𝐵 ⊆ 𝐶, 𝑃 𝐵 𝐶 > 0, we have 𝑃 𝐴|𝐵 =
+𝑃(𝐴∩𝐵|𝐶)
+𝑃(𝐵|𝐶) . 
+Note that if 𝑃 𝐴|𝐵  does not depend on B, A and B are said to be independent.
+• We adopt the Renyi axiom system because it is a conditional probability based and it is pragmatic due 
+to the fact that real world judgement formulation and decision-making is almost invariably conditional 
+upon prior information and experience**.
+167
+* Renyi, A. (1970) Probability Theory, American Elsevier Publishing Company, New York.
+Alfred Renyi
+Hungarian 
+mathematician
+1921-1970
+** Press, S. J. (1989). Bayesian Statistics: Principles, Models, and Applications, John Wiley & Sons, New York.
+--- Page 11 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+From Classical (Frequentist) Statistics to Bayesian Statistics 
+(1/2)
+• All the methods and types of analyses described up to now fall in the realm of “classical statistical 
+analysis.” 
+• We now introduce “Bayesian Methodology” which typically yields more information with smaller sample 
+size than classical analysis. The price is “you need to make more assumptions”, and the results could be 
+“controversial to the point of being not acceptable by some analysts.” 
+• Bayesian methods offer a way of integrating the “past experience” and/or “expert judgement” with the 
+testing data towards a goal of reducing sample size and test time. 
+• This approach is intuitively attractive when dealing with highly reliable products. 
+• On the other hand, some people think this approach might lose the credibility of the final results when 
+you could test for nothing but prove something if the “past experience” and/or “expert judgement” are 
+quantitatively so convincing that you have already achieved your goal before the testing.
+168
+--- Page 12 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+From Classical (Frequentist) Statistics to Bayesian Statistics 
+(2/2)
+• Classical (frequentist) statistical approaches consider distribution parameters as fixed but unknown 
+constants to be estimated using sample data taken randomly from the population of interest. 
+• A confidence interval for an unknown parameter is really a frequency statement about the likelihood 
+that an interval, calculated after observing one of the conceivably very many possible samples we 
+could take from the population, captures the true parameter. It is the interval itself that is random, not 
+the parameter value. 
+• Bayesian statistical approaches treat these population parameters as uncertain, not fixed, quantities. 
+• Before looking at the current data, we use old data/information, or even subjective judgements to 
+construct the “prior distribution model” for the population parameters. 
+• Through the Bayesian procedures, the estimate of the parameter and confidence intervals (known as 
+credibility intervals) are calculated directly from the “posterior distribution model” derived from 
+the integration of prior distribution with the current testing data.
+• “Credibility intervals” are legitimate probability statements about the unknown parameters.
+169
+--- Page 13 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+* References
+• Silver, Nate (2012) The Signal and the Noise, The Art and Science of Prediction, Penguin Books, London, England
+• Luo, W., and Yu, J. (2022), Sexual infidelity among the married in China, Chinese Journal of Sociology, vol. B(3), pp. 374-397.
+• Breast cancer risk in American Women, National Cancer Institute,  retrieved 05-12-2024 from  https://www.cancer.gov/types/breast/risk-fact-sheet,
+• Accuracy of Mammograms, Susan G. Komen organization, retrieved 05-12-2024 from https://www.komen.org/breast-cancer/screening/mammography/accuracy/
+• Hoang, L. N. (2020) The Equation of Knowledge, From Bayes’ Rule to a Unified Philosophy of Science, CRC Press, Boca Raton, FL.
+Three Teaser Examples
+• We will discuss 3 teaser examples* to show the various applications of Bayesian approaches.
+• Bayesian methodology has been applied to various fields including
+• Medical diagnostic, genetics, epidemiology, biology, neurosciences, genome sequencing, protein 
+analysis, psychology, sports, education, social networks, theology, game, insurance, gambling, 
+economics, automated translations, astrophysics, cryptography, spatial engineering, nuclear power 
+industry, engineering testing, artificial intelligence, signal processing, etc.
+170
+--- Page 14 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Teaser 1: Mammogram Example
+• Suppose you are a female (≥ 40 years old) and your mammogram test is positive indicating a breast 
+cancer. How likely is it that you actually have a breast cancer?
+171
+--- Page 15 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Teaser 1: Mammogram Example
+HYPOTHESIS: SHE IS >= 40 YEARS OF AGE AND HAS BREAST CANCER.
+PRIOR PROBABILITY
+Initial estimate of “how likely the hypothesis is” or “how likely she has breast cancer when 
+>= 40 years old. x 1.55%
+A NEW EVENT (NEW DATA; NEW INFORMATION) OCCURS: MAMMOGRAM SHOWS POSITIVE 
+RESULTS INDICATING SHE HAS BREAST CANCER
+Probability of this new event occurring (mammogram positive) GIVEN that she has breast 
+cancer. y 87%
+Probability of this new event occurring (mammogram positive) GIVEN that she has no 
+breast cancer. z 1 in 8
+POSTERIOR PROBABILITY
+Updated estimate of the hypothesis that “how likely she has breast cancer, GIVEN that the 
+mammogram test shows positive”.
+𝑥𝑦
+𝑥𝑦+ 1 − 𝑥 𝑧 1 in 10
+• All x, y, and z are actual statistics from referenced literatures. 
+• A positive mammogram results may not have that severe likelihood you think.
+172
+--- Page 16 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Teaser 2: Underwear Example
+• Suppose you are married (or living with your partner). You come home from a business trip and found a 
+strange pair of underwear in your dresser drawer. You ask yourself: how likely is it that your partner is 
+cheating on you?
+• Disclaimer: this example is only for illustration of Bayesian procedure.
+173
+--- Page 17 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Teaser 2: Underwear Example
+HYPOTHESIS: YOUR PARTNER IS CHEATING ON YOU.
+PRIOR PROBABILITY
+Initial estimate of “how likely the hypothesis is” or “how likely it is that he/she is cheating 
+on you. x 26%
+A NEW EVENT (NEW DATA; NEW INFORMATION) OCCURS: DISCOVERED A STRANGE UNDERWEAR
+Probability of this new event occurring (underwear appearing) GIVEN that he/she is 
+cheating on you. y 50%
+Probability of this new event occurring (underwear appearing) GIVEN that he/she is not 
+cheating on you. z 5%
+POSTERIOR PROBABILITY
+Updated estimate of the hypothesis that “how likely he/she is cheating on you, GIVEN that 
+you have discovered the underwear.”
+𝑥𝑦
+𝑥𝑦+ 1 − 𝑥 𝑧 78%
+174
+--- Page 18 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Teaser 2: Underwear Example
+HYPOTHESIS: YOUR PARTNER IS CHEATING ON YOU.
+PRIOR PROBABILITY
+Initial estimate of “how likely the hypothesis is” or “how likely it is that he/she is cheating 
+on you. x 26%
+A NEW EVENT (NEW DATA; NEW INFORMATION) OCCURS: DISCOVERED A STRANGE UNDERWEAR
+Probability of this new event occurring (underwear appearing) GIVEN that he/she is 
+cheating on you. y 50%
+Probability of this new event occurring (underwear appearing) GIVEN that he/she is not 
+cheating on you. z 5%
+POSTERIOR PROBABILITY
+Updated estimate of the hypothesis that “how likely he/she is cheating on you, GIVEN that 
+you have discovered the underwear.”
+𝑥𝑦
+𝑥𝑦+ 1 − 𝑥 𝑧 78%
+• If you think your partner is innocent in the first place 𝑥 = 1%, then posterior probability = 9%. 
+• If you strongly believe your partner is guilty in the first place, 𝑥 = 90%, then posterior probability = 99%.
+• If you strongly believe your partner is guilty in the first place, 𝑥 = 90%, and now your partner explains it’s a surprising gift for you (new 
+data) so you lower y to 10%, then posterior probability = 95%. A strong prior is hard to break with new data.
+175
+--- Page 19 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Teaser 3: Terror Attack Example
+• The first plane just hit the World Trade Center. What is the probability that terrorists crash a plane into a 
+Manhattan skyscraper?
+• Disclaimer: this example is only for illustration of Bayesian procedure.
+176
+--- Page 20 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Teaser 3: Terror Attack Example
+HYPOTHESIS: TERRORISTS CRASH PLANES INTO NEW YORK MANHATTAN SKYSCRAPERS.
+PRIOR PROBABILITY
+Initial estimate of “how likely the hypothesis is” or “how likely terrorists crash planes into 
+New York Manhattan Skyscrapers”. x
+1 in 
+20,000* 
+(0.005%)
+A NEW EVENT (NEW DATA; NEW INFORMATION) OCCURS: 1ST PLANE HITS WORLD TRADE CENTER.
+Probability of this new event occurring (1 st plane hits WTC) GIVEN that terrorists crash 
+planes into Manhattan Skyscrapers. y 100%
+Probability of this new event occurring (1 st plane hits WTC) GIVEN that terrorists do not 
+crash planes into Manhattan skyscrapers. z
+1 in 
+10,000 
+(0.01%)
+POSTERIOR PROBABILITY
+Updated estimate of the hypothesis that “how likely terrorist crash planes into Manhattan 
+skyscrapers”.
+𝑥𝑦
+𝑥𝑦+ 1 − 𝑥 𝑧
+1 in 3 
+(33%)
+• Note: Two planes crashed into Empire State Building (1945) and a Wall Street building (1946) from 1945 to 2001 (total 20,000 days). So, on 
+any given day, the chance of z is 1 in 10,000. We assume the initial estimate of x before a terror attack on tall buildings in Manhattan is about 
+1 in 20,000 (= 0.005%) which is even half of the empirical data we have. At the moment the first plane hit, the posterior probability grew from 
+0.005% to 33%. This example shows the Bayesian application to a very rare event that it is hard to handle from classical statistics.
+177
+--- Page 21 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Reverend Thomas Bayes and Richard Price
+• Reverend Thomas Bayes (1702 – 1761): an English statistician and philosopher.
+• His work was published in 1763 as “An Essay towards solving a Problem in the Doctrine of Chances” by 
+Reverend Richard Price (1723 – 1791).
+178
+Thomas Bayes
+(1701-1761)
+English statistician, 
+philosopher, and 
+Presbyterian 
+minister
+Richard Price
+(1723-1791)
+English moral 
+philosopher, 
+Nonconformist 
+minister, and 
+mathematician
+--- Page 22 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+• Independently of Thomas Bayes, Pierre-Simon Laplace (1749 – 
+1827) in 1774, and later in his 1812 book Théorie analytique des 
+probabilités (Analytical Probability Theory) used conditional 
+probability to formulate the relation of an updated posterior 
+probability from a prior probability and a given evidence. 
+• He reproduced and extended Bayes' results in 1774, apparently 
+unaware of Bayes' work. The Bayesian Interpretation of 
+probability was developed mainly by Laplace.
+179
+Pierre-Simon Laplace
+Pierre-Simon 
+Laplace
+(1749-1829)
+French polymath in 
+physics, astronomy, 
+mathematics, 
+engineering, statistics, 
+and philosophy
+--- Page 23 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+• Sir Harold Jeffreys (1891 – 1989), a British geophysicist, put Bayes’ algorithm and 
+Laplace's formulation on an axiomatic basis in his Scientific Inference (first ed. 1931). 
+• His 1939 book Theory of Probability played a key role in the revival of the Bayesian 
+Probability (a view of probability as a reasonable expectation representing a state of 
+knowledge or as quantification of a personal belief).
+180
+Sir Harold Jeffreys
+Sir Harold Jeffreys
+(1891-1989)
+British Geophysicist
+
+--- Page 24 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+• Harold Jeffreys' axiomatic system for probability, as presented in his seminal work "Theory of Probability" (1939), was a 
+groundbreaking attempt to establish a formal foundation for Bayesian statistics and scientific inference.
+• Comparability: Jeffreys proposed that for any two propositions (or statements) regarding uncertain events, their 
+probabilities can be compared. This implies that one can always say whether one proposition is more probable than 
+another, equally probable, or less probable
+• Transitivity: If proposition A is more probable than proposition B, and proposition B is more probable than 
+proposition C, then proposition A is more probable than proposition C. This axiom ensures a consistent ordering of 
+probabilities.
+• Deducibility: If a proposition A can be logically deduced from another proposition B, then the probability of A 
+given B is 1 (certainty)
+• Product Rule: This is a fundamental axiom in Bayesian probability, and it allows for calculating the joint 
+probability of two events.
+• Sum Rule: This axiom states that if several propositions are mutually contradictory (mutually exclusive) and 
+exhaustive (covering all possibilities), the probability that one of them is true is the sum of the probabilities that 
+each separately is true.
+181
+Jeffreys’ Axiom System Key Features
+--- Page 25 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+• Probability as a measure of reasonable confidence representing the uncertainty:
+• Probability is viewed as a measure of the degree of reasonable confidence one has in the truth of a scientific proposition, rather than solely focusing 
+on the limiting frequency of events. 
+• Axiomatic derivation of prior distributions:
+• Jeffreys proposed an axiomatic way to derive prior distributions. This approach was justified as coherent, compatible with the learning process, and 
+capable of incorporating imprecise information.
+• Coherent theory of induction:
+• He aimed to develop a theory for inductive reasoning, allowing inferences from data and incorporating prior beliefs and uncertainties. He 
+recognized the importance of coherence, ensuring that posterior distributions derived from his framework could be used as priors for future 
+observations, reflecting the process of learning from data.
+• Bayes' Theorem as the core:
+• He emphasizes the use of Bayes' theorem to update prior beliefs with new evidence (data) to obtain posterior probabilities.
+• Objective Bayes inference:
+• His approach tends towards "objective" Bayesian inference, where prior distributions are derived analytically from sampling distributions, and 
+examples are treated in a non-informative manner.
+• Jeffreys' razor:
+• This principle suggests that new parameters in laws should be tested one at a time unless there's a specific reason otherwise, implying a preference 
+for simpler models.
+182
+Jeffreys’ Major Impact
+--- Page 26 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+• Critique*: Some aspects of Jeffreys' system, such as approach to improper priors and reliance on intuition, 
+are considered to lack the rigorous mathematical foundations found in modern probability theory. 
+However, the insights on scientific inference and the development of non-informative priors have had a 
+lasting impact on Bayesian statistics.
+• We notice that the exact nature of Jeffreys’ axiom system might not be as formal as Kolmogorov's, 
+Jeffreys' work laid a critical foundation for Bayesian statistics by providing a framework for scientific 
+inference based on probability theory and emphasizing the importance of incorporating prior information 
+and uncertainty.
+• Jeffreys' system is more focused on subjective or epistemological probability, whereas Kolmogorov's 
+is purely mathematical and focuses on sets and measures. 
+183
+Jeffreys’ Critique
+* Robert, C., Chopin, N., and Rousseau, J., (2009) “Harild Jeffreys’s Theory of Probability Revisited, Statistical Science, vol. 24, No. 2, pp. 141-172.
+--- Page 27 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Bayesian Inference
+• Bayesian Inference is a method of statistical inference when 
+the Bayes Theorem is used to update the probability of a 
+hypothesis as more evidence (data or information) becomes 
+available.
+• This aligns with the scientific investigation process when 
+we learn from experiments and then develop/modify a specific 
+hypothesis. 
+• Bayes Theorem allows us to integrate data into this inference 
+process to revise the hypothesis, then continuously follow this 
+process as we learn more with more data/evidence.
+184
+Hypothesis/Belief
+Evidence/Data
+Revised Hypothesis/ 
+Belief
++
+Continue…
+--- Page 28 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+The “Inverse Probability” of Bayes Theorem
+• Most probability question is like this: 
+• Assume breast cancer and the Mammogram test.
+• What is the probability of successfully detecting the cancer from the Mammogram test?
+• The probability of successfully detecting is 87%.  
+• Usually called “Sensitivity” (the proportion of people with breast cancer who received “cancer 
+signal detected” results; = 1 − 𝛽)
+• Bayes Theorem asks the “inverse” question which is what we really care about:
+• If your Mammogram test shows “Positive” signal indicating you have breast cancer, what is the 
+probability that you actually have breast cancer?
+185
+--- Page 29 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+The Engineering Application
+• What we want to know from Engineering testing:
+• If we have historical data/information of the product we are developing/updating, for example,
+• reasonable modeling, 
+• DFMEA and design guidelines, 
+• detailed testing profiles simulating and/or accelerating real world environment, and
+• quantified testing data of achieving the required Reliability Target like R%, Failure Rate, 
+MTTF/MTBF)
+Do we need to test large number of samples to verify the achievement of Reliability Target? 
+What is the needed sample size to pass the test with all the evidence/data given?
+186
+--- Page 30 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Conditional Probability (1/3)
+𝑃(𝐴|𝐵) = 𝑃(𝐴 ∩ 𝐵)
+𝑃(𝐵)
+187
+A B
+𝑨 ∩ 𝑩
+--- Page 31 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Conditional Probability (2/3)
+𝑃 𝐴 𝐵 = 𝑃 𝐴 ∩ 𝐵
+𝑃 𝐵 = 𝑷 𝑩|𝑨) × 𝑷(𝑨
+𝑃 𝐵
+188
+𝑷 𝑩 𝑨 = 𝑷 𝑨 ∩ 𝑩
+𝑷 𝑨
+A B
+𝑨 ∩ 𝑩
+--- Page 32 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Conditional Probability (3/3)
+𝑃 𝐴 𝐵 = 𝑃 𝐴 ∩ 𝐵
+𝑃 𝐵 = 𝑃 𝐵|𝐴) × 𝑃(𝐴
+𝑃 𝐵 = 𝑷 𝑩|𝑨) × 𝑷(𝑨
+𝑷 𝑩|𝑨) × 𝑷(𝑨 + 𝑷 𝑩|ഥ𝑨) × 𝑷(ഥ𝑨
+189
+Law of Total 
+ProbabilityA B
+𝑨 ∩ 𝑩
+𝑷 𝑩|𝑨) × 𝑷(𝑨
+𝑷 𝑩|𝑨) × 𝑷(𝑨 + 𝑷 𝑩|ഥ𝑨) × 𝑷(ഥ𝑨 = 𝑷(𝑨) × 𝑷(𝑩|𝑨)
+𝑷(𝑨) × 𝑷 𝑩|𝑨 + 𝑷(ഥ𝑨) × 𝑷 𝑩|ഥ𝑨 = 𝒙𝒚
+𝒙𝒚 + 𝟏 − 𝒙 𝒛
+--- Page 33 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Bayes Theorem (1/5)
+190
+𝑃(𝑩𝒆𝒍𝒊𝒆𝒇|𝑫𝒂𝒕𝒂) = 𝑃 𝑩𝒆𝒍𝒊𝒆𝒇 ∩ 𝑫𝒂𝒕𝒂
+𝑃 𝑫𝒂𝒕𝒂 = 𝑃 𝑫𝒂𝒕𝒂|𝑩𝒆𝒍𝒊𝒆𝒇) × 𝑃(𝑩𝒆𝒍𝒊𝒆𝒇
+𝑃 𝑫𝒂𝒕𝒂
+𝑃 𝑨 𝑩 = 𝑃 𝑨 ∩ 𝑩
+𝑃 𝑩 = 𝑃 𝑩|𝑨) × 𝑃(𝑨
+𝑃 𝑩
+A B
+𝑨 ∩ 𝑩
+
+--- Page 34 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Bayes Theorem (2/5)
+𝑃(𝜃|𝑥) = 𝑃 𝜃 ∩ 𝑥
+𝑃 𝑥 = 𝑃 𝑥|𝜃) × 𝑃(𝜃
+𝑃 𝑥
+191
+𝜽:
+𝑯𝒚𝒐𝒕𝒉𝒆𝒔𝒊𝒔
+/𝑩𝒆𝒍𝒊𝒆𝒇
+𝜽 ∩ 𝒙
+𝒙: 𝑫𝒂𝒕𝒂
+𝑃(𝐵𝑒𝑙𝑖𝑒𝑓|𝐷𝑎𝑡𝑎) = 𝑃 𝐵𝑒𝑙𝑖𝑒𝑓∩ 𝐷𝑎𝑡𝑎
+𝑃 𝐷𝑎𝑡𝑎 = 𝑃 𝐷𝑎𝑡𝑎|𝐵𝑒𝑙𝑖𝑒𝑓) × 𝑃(𝐵𝑒𝑙𝑖𝑒𝑓
+𝑃 𝐷𝑎𝑡𝑎
+--- Page 35 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Bayes Theorem (3/5)
+192
+Posterior 
+Probability
+𝑃 𝜃 𝑥 = 𝑃 𝜃 ∩ 𝑥
+𝑃 𝑥 = 𝑃 𝑥|𝜃) × 𝑃(𝜃
+𝑃 𝑥 = 𝑃 𝑥|𝜃
+𝑃 𝑥 × 𝑃(𝜃)
+Prior 
+ProbabilityLikelihood
+𝑃(𝐵𝑒𝑙𝑖𝑒𝑓|𝐷𝑎𝑡𝑎) = 𝑃 𝐵𝑒𝑙𝑖𝑒𝑓∩ 𝐷𝑎𝑡𝑎
+𝑃 𝐷𝑎𝑡𝑎 = 𝑃 𝐷𝑎𝑡𝑎|𝐵𝑒𝑙𝑖𝑒𝑓) × 𝑃(𝐵𝑒𝑙𝑖𝑒𝑓
+𝑃 𝐷𝑎𝑡𝑎
+--- Page 36 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Bayes Theorem (4/5)
+193
+Posterior 
+Probability
+𝑃 𝜃 𝑥 = 𝑃 𝜃 ∩ 𝑥
+𝑃 𝑥 = 𝑃 𝑥|𝜃) × 𝑃(𝜃
+𝑃 𝑥 = 𝑃 𝑥|𝜃
+𝑃 𝑥 × 𝑃(𝜃)
+Prior 
+ProbabilityLikelihood
+𝑃(𝐵𝑒𝑙𝑖𝑒𝑓|𝐷𝑎𝑡𝑎) = 𝑃 𝐵𝑒𝑙𝑖𝑒𝑓∩ 𝐷𝑎𝑡𝑎
+𝑃 𝐷𝑎𝑡𝑎 = 𝑃 𝐷𝑎𝑡𝑎|𝐵𝑒𝑙𝑖𝑒𝑓) × 𝑃(𝐵𝑒𝑙𝑖𝑒𝑓
+𝑃 𝐷𝑎𝑡𝑎
+• In essence, we are revising/tuning/modifying the prior belief into a posterior belief using the recent data/evidence.
+• Think about this ….. You went to office in a cloudy morning without brining an umbrella and got wet when you came 
+home in a rainy afternoon. Next morning, you grab an umbrella on your way out to the office when you see a cloudy 
+sky. This is an updating (or further confirming) of your belief that a cloud sky may result in “raining”.
+--- Page 37 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Bayes Theorem (5/5)
+𝑃(𝜃|𝑥) = 𝑃 𝜃 ∩ 𝑥
+𝑃 𝑥 = 𝑃 𝑥|𝜃) × 𝑃(𝜃
+𝑃 𝑥 = 𝑷 𝒙|𝜽) × 𝑷(𝜽
+𝑷 𝒙|𝜽) × 𝑷(𝜽 + 𝑷 𝒙|ഥ𝜽) × 𝑷(ഥ𝜽
+194
+𝑃(𝐵𝑒𝑙𝑖𝑒𝑓|𝐷𝑎𝑡𝑎) = 𝑃 𝐵𝑒𝑙𝑖𝑒𝑓∩ 𝐷𝑎𝑡𝑎
+𝑃 𝐷𝑎𝑡𝑎 = 𝑃 𝐷𝑎𝑡𝑎|𝐵𝑒𝑙𝑖𝑒𝑓) × 𝑃(𝐵𝑒𝑙𝑖𝑒𝑓
+𝑃 𝐷𝑎𝑡𝑎
+Law of Total Probability
+--- Page 38 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Positive Mammogram Results: Do you have Breast Cancer?
+• A typical 40-year-old female, 
+• P(D) = P(Disease) = P(Breast Cancer) = 1 in 65 …. ~ 1.55%
+• P(~D) = 98.45%
+• P(T|D) = P(Test | Breast Cancer) = 87% (sensitivity of the test; = 1 − 𝛽 = 1 − 𝑡𝑦𝑝𝑒 𝐼𝐼 𝑒𝑟𝑟𝑜𝑟)
+ 
+• P(T|~D) = 12.5% (false positive rate)
+𝑃 D 𝑇 = 𝑃 𝑇 𝐷
+𝑃 𝑇 × 𝑃 𝐷 = 𝑃(𝑇|𝐷)
+𝑃 𝑇|𝐷 × 𝑃 𝐷 + 𝑃 𝑇 ~𝐷 × 𝑃(~𝐷) × 𝑃 𝐷
+= 0.87
+0.87 × 0.0155+ 0.125× 0.9845× 0.0155 = 0.87
+0.1365× 0.0155 = 6.37 × 0.0155 = 0.0988 (~ 10%)
+195
+--- Page 39 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Positive Mammogram Results: Do you have Breast Cancer?
+• A typical 40-year-old female, 
+• P(D) = P(Disease) = P(Breast Cancer) = 1 in 65 …. ~ 1.55%
+• P(~D) = 98.45%
+• P(T|D) = P(Test | Breast Cancer) = 87%
+ 
+• P(T|~D) = 12.5% (false positive rate; 1 in 8)
+𝑷 𝑫 𝑻 = 𝑃 𝑇 𝐷
+𝑃 𝑇 × 𝑃 𝐷 = 𝑃(𝑇|𝐷)
+𝑃 𝑇|𝐷 × 𝑃 𝐷 + 𝑃 𝑇 ~𝐷 × 𝑃(~𝐷) × 𝑃 𝐷
+= 0.87
+0.87 × 0.0155+ 0.125× 0.9845× 0.0155 = 0.87
+0.1365× 0.0155 = 6.37 × 0.0155 = 0.0988 (~ 𝟏𝟎%)
+196
+--- Page 40 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Some Core Principles of Bayesian Statistics in 
+Reliability Engineering (1/2)
+• Core Principle 1: In Bayesian statistics, parameters are treated as “unknown 
+quantities.” In classical statistics/probability, these parameters are fixed numbers 
+with no uncertainty around them.
+• Core Principle 2: For classical statistics, probability is rooted in the limiting relative 
+frequency of a certain event in a repeated series of identical trials (for example, 
+reliability testing that could be done in a series of similar tests repeatedly, if we have 
+sufficient resources to do so). For Bayesian statistics, probability can be considered as 
+a “subjective assessment of the state of knowledge” (also called degree of belief) 
+about the model parameters of interest given all available evidence. 
+--- Page 41 ---
+Copyright © Cheng Julius Wang All Rights Reserved
+Some Core Principles of Bayesian Statistics in 
+Reliability Engineering (2/2)
+• Core Principle 3: The estimate of Bayesian interval (called credible interval) of 
+the parameter can be directly interpreted as the probability statement. Most people 
+still use the term “Bayesian confidence interval”.
+• Core Principle 4: With small sample size and various censoring schemes (multiple  
+failure modes/failure mechanisms, various censoring schemes, zero-failure) in most 
+industrial settings, Bayesian methods can easily accommodate difficult situations 
+given a relevant prior distribution is in place. This often produces narrower bounds 
+of interval estimate than that of classical counterpart.
